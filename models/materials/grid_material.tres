@@ -1,0 +1,10 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://dncma7kcykfkx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i7141"]
+load_path = "res://.godot/imported/71_chrome mesh steel perforate metal texture-seamless.png-ce92315dfff666d8d9b842eaf4fdfe40.s3tc.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_i7141")
+uv1_scale = Vector3(2.84, 2.87, 6.535)
+proximity_fade_enabled = true
+proximity_fade_distance = 0.01

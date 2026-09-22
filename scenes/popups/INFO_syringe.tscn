@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://bridcmapirhyp"]
+
+[ext_resource type="Script" uid="uid://b3dbo5h3smpo7" path="res://scripts/popups/info_strzykawka.gd" id="1_he8qx"]
+[ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="2_3sv62"]
+[ext_resource type="Texture2D" uid="uid://cb81weoa0ikdh" path="res://ui/popups/syringe0.png" id="3_he8qx"]
+[ext_resource type="Texture2D" uid="uid://lasbcahpkgem" path="res://ui/popups/syringe1.png" id="4_3sv62"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="5_xik6j"]
+
+[sub_resource type="Animation" id="Animation_us7p2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CL/Control/CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lcvyh"]
+resource_name = "fadein"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CL/Control/CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1.0000024, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s15si"]
+resource_name = "fadeout"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CL/Control/CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1.0000006, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s15si"]
+_data = {
+&"RESET": SubResource("Animation_us7p2"),
+&"fadein": SubResource("Animation_lcvyh"),
+&"fadeout": SubResource("Animation_s15si")
+}
+
+[node name="info_consciousness" type="Control" unique_id=679732230]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_he8qx")
+
+[node name="CL" type="CanvasLayer" parent="." unique_id=846892673]
+layer = 0
+
+[node name="Control" type="Control" parent="CL" unique_id=89217405]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Roll" type="AudioStreamPlayer" parent="CL/Control" unique_id=2140907920]
+stream = ExtResource("2_3sv62")
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="CL/Control" unique_id=1977805817]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -3.0
+offset_right = 1090.0
+offset_bottom = 770.0
+color = Color(0, 0, 0, 0)
+
+[node name="progressbar" type="TextureProgressBar" parent="CL/Control" unique_id=1496194896]
+texture_filter = 1
+layout_mode = 0
+offset_left = 487.99985
+offset_top = 470.0
+offset_right = 1199.9999
+offset_bottom = 589.0
+rotation = -1.0471976
+scale = Vector2(0.305, 0.283)
+value = 95.0
+texture_under = ExtResource("3_he8qx")
+texture_progress = ExtResource("4_3sv62")
+
+[node name="BODYCONSCIOUSNESS" type="RichTextLabel" parent="CL/Control" unique_id=1643533054]
+texture_filter = 1
+layout_mode = 0
+offset_left = 445.0
+offset_top = 491.0
+offset_right = 602.8573
+offset_bottom = 510.76743
+scale = Vector2(1.3999988, 1.879889)
+theme_override_colors/default_color = Color(0.9999966, 0.17391428, 0.12977144, 1)
+theme_override_fonts/normal_font = ExtResource("5_xik6j")
+text = "ANAESTHETIC INJECTION"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="strzykawa_value" type="RichTextLabel" parent="CL/Control" unique_id=785192099]
+texture_filter = 1
+layout_mode = 0
+offset_left = 470.0
+offset_top = 363.0
+offset_right = 602.85724
+offset_bottom = 399.0465
+scale = Vector2(1.3999988, 1.7200006)
+theme_override_colors/default_color = Color(1, 1, 1, 0.6784314)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("5_xik6j")
+theme_override_font_sizes/normal_font_size = 31
+text = "100%"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Show" type="AnimationPlayer" parent="CL/Control" unique_id=1155215277]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_s15si")
+autoplay = &"fadein"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CL/Control" unique_id=892081482]
+position = Vector2(469, 280)
+
+[node name="Timer" type="Timer" parent="CL/Control" unique_id=443003869]
+wait_time = 3.0
+autostart = true
+
+[connection signal="animation_finished" from="CL/Control/Show" to="." method="_on_show_animation_finished"]
+[connection signal="timeout" from="CL/Control/Timer" to="." method="_on_timer_timeout"]

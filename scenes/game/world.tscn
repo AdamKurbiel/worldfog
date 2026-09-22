@@ -1,0 +1,352 @@
+[gd_scene format=3 uid="uid://jv88ofbr1wxv"]
+
+[ext_resource type="PackedScene" uid="uid://brcce5l5gkpdj" path="res://scenes/game/player.tscn" id="1_4wyf3"]
+[ext_resource type="Script" uid="uid://dkxr1ehqlaoe" path="res://scripts/game/world.gd" id="1_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://bpv52q2enobbw" path="res://ui/crosshair.png" id="3_4wyf3"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="4_k0juu"]
+[ext_resource type="Script" uid="uid://hk2gybx5f3rg" path="res://scripts/game/elevator.gd" id="5_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://by6ckh6alpbwm" path="res://models/elevator.fbx" id="5_71j4m"]
+[ext_resource type="Material" uid="uid://dncma7kcykfkx" path="res://models/materials/grid_material.tres" id="6_qfnet"]
+[ext_resource type="Texture2D" uid="uid://4g0kvjgugcof" path="res://models/66_aluminium metal surface texture-seamless.jpg" id="7_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://e6shgh4bwscc" path="res://models/36_iron metal plate texture-seamless.jpg" id="7_i7141"]
+[ext_resource type="Material" uid="uid://cos2tenr6genf" path="res://models/materials/falling_mater.tres" id="8_7r4gi"]
+[ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="9_q5onr"]
+[ext_resource type="AudioStream" uid="uid://dqlj5ot2u0ona" path="res://audio/sfx/elevator_amb.mp3" id="10_w7kh3"]
+
+[sub_resource type="Animation" id="Animation_qfnet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_71j4m"]
+resource_name = "fadein"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.8025019, 7.7274847),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.5666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7141"]
+_data = {
+&"RESET": SubResource("Animation_qfnet"),
+&"fadein": SubResource("Animation_71j4m")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xd07"]
+size = Vector3(5.039383, 6.9348755, 0.60565186)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71j4m"]
+size = Vector3(5.0148926, 1.045227, 5.006714)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3xd07"]
+material = ExtResource("6_qfnet")
+size = Vector2(5.16, 3.8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i7141"]
+load_path = "res://.godot/imported/71_chrome mesh steel perforate metal texture-seamless.png-ce92315dfff666d8d9b842eaf4fdfe40.s3tc.ctex"
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_4mrxx"]
+albedo_texture = SubResource("CompressedTexture2D_i7141")
+uv1_scale = Vector3(1.155, 2.9, 3.92)
+uv1_offset = Vector3(0.08, 0.025, 0)
+proximity_fade_enabled = true
+proximity_fade_distance = 0.01
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qfnet"]
+material = SubResource("ORMMaterial3D_4mrxx")
+size = Vector2(2.105, 3.7)
+center_offset = Vector3(-1.055, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mrxx"]
+albedo_texture = ExtResource("7_i7141")
+uv1_scale = Vector3(3.905, 4.25, 7.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xd07"]
+material = SubResource("StandardMaterial3D_4mrxx")
+size = Vector3(4.2999268, 0.31750488, 7.291992)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jq8tk"]
+size = Vector3(6, 0.4414673, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfnet"]
+albedo_texture = ExtResource("7_4mrxx")
+metallic = 0.3
+normal_scale = -9.47
+uv1_scale = Vector3(4.17, 13.29, 44.32)
+uv2_offset = Vector3(0, 0.905, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jq8tk"]
+lightmap_size_hint = Vector2i(539, 511)
+material = SubResource("StandardMaterial3D_qfnet")
+size = Vector3(8, 1, 38.837463)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qfnet"]
+size = Vector3(7.8378906, 0.7841797, 23.322449)
+
+[sub_resource type="Animation" id="Animation_q5onr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.06]
+}
+
+[sub_resource type="Animation" id="Animation_xo05s"]
+resource_name = "stop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.06, 0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dss4m"]
+_data = {
+&"RESET": SubResource("Animation_q5onr"),
+&"stop": SubResource("Animation_xo05s")
+}
+
+[sub_resource type="Animation" id="Animation_jhx03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gate:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.51215744, 2.8158312, 4.1617594)]
+}
+
+[sub_resource type="Animation" id="Animation_o8fc1"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gate:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.51215744, 2.8158312, 4.1617594), Vector3(-0.512, 9.936, 4.162)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xo05s"]
+_data = {
+&"RESET": SubResource("Animation_jhx03"),
+&"open": SubResource("Animation_o8fc1")
+}
+
+[node name="World" type="Node3D" unique_id=1923274931]
+script = ExtResource("1_e3hyu")
+
+[node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -15.149512, 0.51292455, 0.12096232)
+
+[node name="Control" type="Control" parent="." unique_id=670842810]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1086.0
+offset_bottom = 768.0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=223370571]
+modulate = Color(0.73300546, 0.7330054, 0.7330054, 0.45882353)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("3_4wyf3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=1557976906]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 714.0
+offset_right = 485.0
+offset_bottom = 754.0
+theme_override_fonts/normal_font = ExtResource("4_k0juu")
+theme_override_font_sizes/normal_font_size = 31
+text = "SCORE: 0000000"
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=1079008103]
+libraries/ = SubResource("AnimationLibrary_i7141")
+autoplay = &"fadein"
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1826111354]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -18.0
+offset_right = 1098.0
+offset_bottom = 782.0
+color = Color(0, 0, 0, 1)
+
+[node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -15, -0.020410419, 0)
+script = ExtResource("5_4mrxx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="elevator" unique_id=1102906453]
+
+[node name="back" type="CollisionShape3D" parent="elevator/StaticBody3D" unique_id=1313429483]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.4773407, 2.9674385, -1.1663209)
+shape = SubResource("BoxShape3D_3xd07")
+
+[node name="back2" type="CollisionShape3D" parent="elevator/StaticBody3D" unique_id=552374781]
+transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, 2.3589249, 2.967439, 1.4856523)
+shape = SubResource("BoxShape3D_3xd07")
+
+[node name="back3" type="CollisionShape3D" parent="elevator/StaticBody3D" unique_id=795404824]
+transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, -3.31324, 2.967439, 1.485652)
+shape = SubResource("BoxShape3D_3xd07")
+
+[node name="back4" type="CollisionShape3D" parent="elevator/StaticBody3D" unique_id=1054069406]
+transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, -0.50520706, -1.205008, 1.4962736)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="metalGrid0" type="MeshInstance3D" parent="elevator" unique_id=1632858411]
+transform = Transform3D(1.0000001, 0, 0, 0, -4.3711395e-08, -1.0000001, 0, 1.0000001, -4.3711395e-08, -0.51768875, 4.6131487, -1.0613073)
+mesh = SubResource("PlaneMesh_3xd07")
+
+[node name="metalGrid1" type="MeshInstance3D" parent="elevator" unique_id=1397722398]
+transform = Transform3D(7.9391455e-08, 1.0000002, -4.371141e-08, -1.08819494e-16, -4.3711395e-08, -1.0000001, -1.0000002, 7.9391455e-08, -3.640076e-15, -3.1156273, 4.6131496, -1.0613073)
+mesh = SubResource("PlaneMesh_qfnet")
+
+[node name="metalGrid2" type="MeshInstance3D" parent="elevator" unique_id=885945198]
+transform = Transform3D(-1.6681429e-07, -1.0000002, 4.3711417e-08, -1.0881962e-16, -4.3711395e-08, -1.0000001, 1.0000002, -1.6681429e-07, 7.461448e-15, 2.158928, 4.6131496, 1.0474111)
+mesh = SubResource("PlaneMesh_qfnet")
+
+[node name="gate" type="MeshInstance3D" parent="elevator" unique_id=1843676378]
+transform = Transform3D(1.0000001, 0, 0, 0, -4.3711395e-08, 1.0000001, 0, -1.0000001, -4.3711395e-08, -0.51215744, 2.8158312, 4.1617594)
+mesh = SubResource("BoxMesh_3xd07")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="elevator/gate" unique_id=1182050284]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/gate/StaticBody3D" unique_id=19244411]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, -2.3980817e-12, 0, 2.3980817e-12, 0.99999976, 0.5, -0.033111572, 7.1525574e-07)
+shape = SubResource("BoxShape3D_jq8tk")
+
+[node name="Roll" type="AudioStreamPlayer3D" parent="elevator/gate" unique_id=2098463434]
+stream = ExtResource("9_q5onr")
+volume_db = -8.743
+
+[node name="SpotLight3D" type="SpotLight3D" parent="elevator" unique_id=1520086711]
+transform = Transform3D(3.2786887, 0, 0, 0, -0.1463132, 3.2754223, 0, -3.2754223, -0.1463132, 0, 7.255163, 0)
+light_color = Color(1, 0.79278326, 0.5490128, 1)
+spot_range = 2.275
+spot_attenuation = -0.18
+spot_angle = 78.22
+
+[node name="outerWalls" type="Node3D" parent="elevator" unique_id=1603815402]
+
+[node name="wall0" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=136099399]
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, -4.4519653, 6.780551, 0.7078442)
+material_override = ExtResource("8_7r4gi")
+mesh = SubResource("BoxMesh_jq8tk")
+skeleton = NodePath("../..")
+
+[node name="wall1" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1859715922]
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 3.9401245, 6.5880694, 0.7078442)
+material_override = ExtResource("8_7r4gi")
+mesh = SubResource("BoxMesh_jq8tk")
+skeleton = NodePath("../..")
+
+[node name="wall2" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=280740420]
+transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.51754, 6.817125, -2.570845)
+material_override = ExtResource("8_7r4gi")
+mesh = SubResource("BoxMesh_jq8tk")
+skeleton = NodePath("../..")
+
+[node name="wall3" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1368293986]
+transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.10152435, 18.28855, 4.2565756)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../..")
+
+[node name="ElevatorAmb" type="AudioStreamPlayer3D" parent="elevator" unique_id=249119398]
+transform = Transform3D(3.2786887, 0, 0, 0, 3.2786887, 0, 0, 0, 3.2786887, -0.6886406, 7.176101, 0)
+stream = ExtResource("10_w7kh3")
+attenuation_model = 2
+volume_db = -1.488
+unit_size = 12.32
+max_db = 2.372
+pitch_scale = 1.06
+panning_strength = 0.75
+parameters/looping = true
+
+[node name="pitchAnim" type="AnimationPlayer" parent="elevator/ElevatorAmb" unique_id=315263865]
+libraries/ = SubResource("AnimationLibrary_dss4m")
+
+[node name="animation" type="AnimationPlayer" parent="elevator" unique_id=1627672601]
+libraries/ = SubResource("AnimationLibrary_xo05s")
+
+[connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]

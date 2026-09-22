@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://brcce5l5gkpdj"]
+
+[ext_resource type="Script" uid="uid://txptjwwrcwti" path="res://scripts/game/main_player.gd" id="1_u3rb4"]
+[ext_resource type="PackedScene" uid="uid://cc0d4dhtobjlv" path="res://scenes/game/debug.tscn" id="2_nybob"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="3_68xwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jeejg"]
+radius = 0.30615234
+height = 2.024109
+
+[node name="player" type="CharacterBody3D" unique_id=1767344172]
+slide_on_ceiling = false
+floor_stop_on_slope = false
+script = ExtResource("1_u3rb4")
+
+[node name="debug" parent="." unique_id=201911336 instance=ExtResource("2_nybob")]
+
+[node name="console" type="Control" parent="." unique_id=1527619964]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1085.0
+offset_bottom = 768.0
+
+[node name="LineEdit" type="LineEdit" parent="console" unique_id=1272943058]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_68xwl")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dqkch")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qhqgy")
+alignment = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+virtual_keyboard_show_on_focus = false
+caret_blink = true
+caret_blink_interval = 0.1
+
+[node name="Label" type="Label" parent="console" unique_id=1362985694]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 689.0
+offset_right = 1086.0
+offset_bottom = 724.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6901961)
+theme_override_fonts/font = ExtResource("3_68xwl")
+theme_override_font_sizes/font_size = 33
+text = "CONSOLE OPENED (PRESS ` TO TOGGLE)"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="." unique_id=1397443857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39413452, 0)
+shape = SubResource("CapsuleShape3D_jeejg")
+
+[node name="checkup" type="RayCast3D" parent="." unique_id=934379869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9313642, 0)
+target_position = Vector3(0, 2, 0)
+
+[node name="head" type="Node3D" parent="." unique_id=509243314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0983601, -0.25991637)
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=416926787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.13877451)
+current = true
+fov = 85.0
+near = 0.004
+
+[node name="flashlight" type="SpotLight3D" parent="." unique_id=2081824799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008564621, 1.1060892, -0.13789368)
+visible = false
+spot_range = 4.886
+spot_angle = 39.67
+
+[connection signal="focus_exited" from="console/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="console/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="console/LineEdit" to="." method="_on_line_edit_text_submitted"]

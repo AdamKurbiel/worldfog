@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cc0d4dhtobjlv"]
+
+[ext_resource type="Script" uid="uid://d2lw1uu6y0m1b" path="res://scripts/game/debug.gd" id="1_k6ilb"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="2_fdevw"]
+[ext_resource type="FontFile" uid="uid://6uomm0smvlmj" path="res://fonts/Arial.ttf" id="3_ewj4s"]
+
+[node name="Control" type="Control" unique_id=1929086728]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k6ilb")
+
+[node name="BASIC" type="VBoxContainer" parent="." unique_id=948443575]
+layout_mode = 0
+offset_right = 1087.0
+offset_bottom = 769.0
+theme_override_constants/separation = 20
+
+[node name="LINE0" type="Control" parent="BASIC" unique_id=899181248]
+layout_mode = 2
+
+[node name="NAMEVERSION" type="RichTextLabel" parent="BASIC/LINE0" unique_id=1591324827]
+layout_mode = 0
+offset_right = 1085.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "WORLDFOG VERSION 1.0.0"
+scroll_active = false
+
+[node name="LINE1" type="Control" parent="BASIC" unique_id=614336738]
+layout_mode = 2
+
+[node name="FPS" type="RichTextLabel" parent="BASIC/LINE1" unique_id=630363018]
+layout_mode = 0
+offset_right = 1085.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "0 FPS"
+scroll_active = false
+
+[node name="LINE2" type="Control" parent="BASIC" unique_id=225777743]
+layout_mode = 2
+
+[node name="X" type="RichTextLabel" parent="BASIC/LINE2" unique_id=664822291]
+layout_mode = 0
+offset_right = 1085.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "X:"
+scroll_active = false
+
+[node name="LINE3" type="Control" parent="BASIC" unique_id=1211622949]
+layout_mode = 2
+
+[node name="Y" type="RichTextLabel" parent="BASIC/LINE3" unique_id=489517661]
+layout_mode = 0
+offset_right = 1085.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "Y:"
+scroll_active = false
+
+[node name="LINE4" type="Control" parent="BASIC" unique_id=1321988870]
+layout_mode = 2
+
+[node name="Z" type="RichTextLabel" parent="BASIC/LINE4" unique_id=625259501]
+layout_mode = 0
+offset_right = 1085.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "Z:"
+scroll_active = false
+
+[node name="TREE" type="VBoxContainer" parent="." unique_id=1580249192]
+visible = false
+layout_mode = 0
+offset_right = 1087.0
+theme_override_constants/separation = 20
+
+[node name="LINE0" type="Control" parent="TREE" unique_id=1164203081]
+layout_mode = 2
+
+[node name="TITLE" type="RichTextLabel" parent="TREE/LINE0" unique_id=785943891]
+layout_mode = 0
+offset_left = -66.0
+offset_right = 919.0
+offset_bottom = 39.0
+theme_override_fonts/normal_font = ExtResource("2_fdevw")
+theme_override_font_sizes/normal_font_size = 25
+text = "scene_tree"
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="LINE1" type="Control" parent="TREE" unique_id=749136630]
+layout_mode = 2
+
+[node name="CONTENT" type="RichTextLabel" parent="TREE/LINE1" unique_id=85117339]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.0
+offset_top = 6.0
+offset_bottom = 632.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(1, 1, 1, 0.7294118)
+theme_override_fonts/normal_font = ExtResource("3_ewj4s")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+scroll_active = false

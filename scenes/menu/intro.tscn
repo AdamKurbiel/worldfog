@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://7evotnm70x6c"]
+
+[ext_resource type="Script" uid="uid://donlqly2dfx1r" path="res://scripts/menu/intro.gd" id="1_hpr42"]
+[ext_resource type="AudioStream" uid="uid://cmt3h28hgax1" path="res://audio/sfx/write.mp3" id="2_r5e1y"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="3_lawq6"]
+
+[sub_resource type="Animation" id="Animation_8k8jw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 23)]
+}
+
+[sub_resource type="Animation" id="Animation_1cctr"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 23), Vector2(40, 20), Vector2(40, 22), Vector2(40, 21), Vector2(40, 25), Vector2(40, 23), Vector2(40, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scu43"]
+_data = {
+&"RESET": SubResource("Animation_8k8jw"),
+&"idle": SubResource("Animation_1cctr")
+}
+
+[node name="Control" type="Control" unique_id=1738652130]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hpr42")
+
+[node name="Write" type="AudioStreamPlayer" parent="." unique_id=544461832]
+stream = ExtResource("2_r5e1y")
+
+[node name="content" type="RichTextLabel" parent="." unique_id=529635388]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 23.0
+offset_right = 1044.0
+offset_bottom = 743.9928
+theme_override_fonts/normal_font = ExtResource("3_lawq6")
+theme_override_font_sizes/normal_font_size = 35
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="content" unique_id=1536431799]
+libraries/ = SubResource("AnimationLibrary_scu43")
+autoplay = &"idle"

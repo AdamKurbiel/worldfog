@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://dsyweg180jmvt"]
+
+[ext_resource type="AudioStream" uid="uid://dakxojtgljg55" path="res://audio/sfx/select.wav" id="1_mgsx5"]
+[ext_resource type="AudioStream" uid="uid://osnpmw8l2t3j" path="res://audio/music/menu.mp3" id="2_y6vun"]
+[ext_resource type="Texture2D" uid="uid://bh3xc807sa8ll" path="res://ui/logo/white.png" id="3_e1dod"]
+[ext_resource type="Script" uid="uid://7ivv6dsw2ykd" path="res://scripts/menu/button.gd" id="4_bvc5d"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="5_ekkse"]
+[ext_resource type="FontFile" uid="uid://mfogts1l61fa" path="res://fonts/Nihonium.ttf" id="6_84lro"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ykhv"]
+sky_top_color = Color(0.10350854, 0, 0.00036565986, 1)
+sky_horizon_color = Color(0.044235565, 0.018358428, 0.018449843, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.044235565, 0.018358428, 0.018449843, 1)
+
+[sub_resource type="Sky" id="Sky_2wh52"]
+sky_material = SubResource("ProceduralSkyMaterial_0ykhv")
+
+[sub_resource type="Environment" id="Environment_ow34m"]
+background_mode = 2
+sky = SubResource("Sky_2wh52")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ykhv"]
+emission_shape = 3
+emission_box_extents = Vector3(4.005, 3.5, 4.46)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_0ykhv"]
+_limits = [0.0, 0.1, 0.0, 1.0]
+_data = [Vector2(0.014851488, 0.00042816252), 0.0, 0.0, 0, 0, Vector2(0.07178217, 0.04062797), 0.0, 0.0, 0, 0, Vector2(0.42079207, 0.06907706), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wh52"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.011764706)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_ow34m"]
+material = SubResource("StandardMaterial3D_2wh52")
+curve = SubResource("Curve_0ykhv")
+
+[node name="MainMenu" type="Node2D" unique_id=1511228444]
+
+[node name="Select" type="AudioStreamPlayer" parent="." unique_id=1085983604]
+stream = ExtResource("1_mgsx5")
+volume_db = -3.633
+
+[node name="Menu" type="AudioStreamPlayer" parent="." unique_id=1970011009]
+stream = ExtResource("2_y6vun")
+autoplay = true
+parameters/looping = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=867276138]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 46.0
+offset_top = 58.0
+offset_right = 561.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(249, 25)
+size_flags_horizontal = 4
+texture = ExtResource("3_e1dod")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1554973549]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1058503539]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D" unique_id=254509259]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D" unique_id=1061825164]
+environment = SubResource("Environment_ow34m")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D" unique_id=615180957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4898615, 0)
+amount = 15
+visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_0ykhv")
+draw_pass_1 = SubResource("RibbonTrailMesh_ow34m")
+
+[node name="main" type="Control" parent="." unique_id=1099056077]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main" unique_id=10237109]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 155.0
+offset_right = 94.0
+offset_bottom = 287.0
+theme_override_constants/separation = 44
+
+[node name="Control" type="Control" parent="main/VBoxContainer" unique_id=917559662]
+layout_mode = 2
+script = ExtResource("4_bvc5d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="main/VBoxContainer/Control" unique_id=708726152]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 48.0
+theme_override_fonts/normal_font = ExtResource("5_ekkse")
+theme_override_font_sizes/normal_font_size = 40
+text = "PLAY"
+scroll_active = false
+
+[node name="play" type="Button" parent="main/VBoxContainer/Control" unique_id=230722559]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -53.0
+offset_right = 238.0
+offset_bottom = 37.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="Control2" type="Control" parent="main/VBoxContainer" unique_id=1198286228]
+layout_mode = 2
+script = ExtResource("4_bvc5d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="main/VBoxContainer/Control2" unique_id=14848267]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 48.0
+theme_override_fonts/normal_font = ExtResource("5_ekkse")
+theme_override_font_sizes/normal_font_size = 40
+text = "OPTIONS"
+scroll_active = false
+
+[node name="options" type="Button" parent="main/VBoxContainer/Control2" unique_id=1607816882]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -53.0
+offset_top = 1.0
+offset_right = 184.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="Control3" type="Control" parent="main/VBoxContainer" unique_id=111390767]
+layout_mode = 2
+script = ExtResource("4_bvc5d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="main/VBoxContainer/Control3" unique_id=499982638]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 48.0
+theme_override_fonts/normal_font = ExtResource("5_ekkse")
+theme_override_font_sizes/normal_font_size = 40
+text = "CREDITS"
+scroll_active = false
+
+[node name="credits" type="Button" parent="main/VBoxContainer/Control3" unique_id=1277699837]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -53.0
+offset_top = 1.0
+offset_right = 186.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="Control4" type="Control" parent="main/VBoxContainer" unique_id=1217644810]
+layout_mode = 2
+script = ExtResource("4_bvc5d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="main/VBoxContainer/Control4" unique_id=2143732472]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 48.0
+theme_override_fonts/normal_font = ExtResource("5_ekkse")
+theme_override_font_sizes/normal_font_size = 40
+text = "EXIT"
+scroll_active = false
+
+[node name="exit" type="Button" parent="main/VBoxContainer/Control4" unique_id=246146692]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -53.0
+offset_top = 1.0
+offset_right = 191.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="Panel" type="Panel" parent="main" unique_id=591534919]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 473.0
+offset_right = 1061.0
+offset_bottom = 738.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="main/Panel" unique_id=357487878]
+layout_mode = 0
+offset_right = 290.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("5_ekkse")
+theme_override_font_sizes/normal_font_size = 36
+text = "CHANGELOG"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="main/Panel" unique_id=754432087]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 47.0
+offset_right = 285.0
+offset_bottom = 249.0
+theme_override_fonts/normal_font = ExtResource("6_84lro")
+theme_override_font_sizes/normal_font_size = 30
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[connection signal="mouse_entered" from="main/VBoxContainer/Control/play" to="main/VBoxContainer/Control" method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="main/VBoxContainer/Control/play" to="main/VBoxContainer/Control" method="_on_play_mouse_exited"]
+[connection signal="pressed" from="main/VBoxContainer/Control/play" to="main/VBoxContainer/Control" method="_on_play_pressed" flags=18]
+[connection signal="mouse_entered" from="main/VBoxContainer/Control2/options" to="main/VBoxContainer/Control2" method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="main/VBoxContainer/Control2/options" to="main/VBoxContainer/Control2" method="_on_play_mouse_exited"]
+[connection signal="pressed" from="main/VBoxContainer/Control2/options" to="main/VBoxContainer/Control2" method="_on_play_pressed" flags=18]
+[connection signal="mouse_entered" from="main/VBoxContainer/Control3/credits" to="main/VBoxContainer/Control3" method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="main/VBoxContainer/Control3/credits" to="main/VBoxContainer/Control3" method="_on_play_mouse_exited"]
+[connection signal="pressed" from="main/VBoxContainer/Control3/credits" to="main/VBoxContainer/Control3" method="_on_play_pressed" flags=18]
+[connection signal="mouse_entered" from="main/VBoxContainer/Control4/exit" to="main/VBoxContainer/Control4" method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="main/VBoxContainer/Control4/exit" to="main/VBoxContainer/Control4" method="_on_play_mouse_exited"]
+[connection signal="pressed" from="main/VBoxContainer/Control4/exit" to="main/VBoxContainer/Control4" method="_on_play_pressed" flags=18]
