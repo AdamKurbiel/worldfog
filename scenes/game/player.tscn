@@ -18,6 +18,7 @@ floor_stop_on_slope = false
 script = ExtResource("1_u3rb4")
 
 [node name="debug" parent="." unique_id=201911336 instance=ExtResource("2_nybob")]
+visible = false
 
 [node name="console" type="Control" parent="." unique_id=1527619964]
 visible = false
