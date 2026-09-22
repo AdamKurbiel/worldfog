@@ -6,4 +6,7 @@
 	</picture>
 </p>
 
-My 3D Rogue-like game created in Godot Engine (GDScript).
+<p align="center">My 3D Rogue-like game created in Godot Engine (GDScript).</p>
+
+## About
+WORLDFOG is a fast, time-based roguelike game, set in dystopian biomechanical world.
