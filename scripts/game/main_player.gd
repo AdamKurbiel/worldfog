@@ -9,6 +9,14 @@ extends CharacterBody3D
 @onready var debug: Control = $debug
 @onready var console: Control = $console
 @onready var console_line: LineEdit = $console/LineEdit
+@onready var areaNotifyAnimation : AnimationPlayer = $PlayerGUI/CanvasLayer/animation
+@onready var areaEnterSfx : AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
+@onready var areaNameLabel : Label = $PlayerGUI/CanvasLayer/area_name
+
+func areaNotify(area_name):
+	areaNotifyAnimation.play("show")
+	areaEnterSfx.play()
+	areaNameLabel.text = area_name
 
 var flashlight_lerp_speed: float = 20.0
 var current_speed: float = 5.0

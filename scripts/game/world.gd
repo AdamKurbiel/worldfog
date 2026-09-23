@@ -16,6 +16,8 @@ func prepareStage():
 	player.stop_shake()
 	await get_tree().create_timer(1.0).timeout
 	elevator.open()
+	await get_tree().create_timer(0.5).timeout
+	player.areaNotify("Test name")
 
 func _ready() -> void:
 	prepareStage()

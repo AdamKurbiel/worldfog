@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://txptjwwrcwti" path="res://scripts/game/main_player.gd" id="1_u3rb4"]
 [ext_resource type="PackedScene" uid="uid://cc0d4dhtobjlv" path="res://scenes/game/debug.tscn" id="2_nybob"]
 [ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="3_68xwl"]
+[ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="4_68xwl"]
+[ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
 
@@ -11,6 +13,105 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jeejg"]
 radius = 0.30615234
 height = 2.024109
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwvfn"]
+shader = ExtResource("4_68xwl")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.7)
+shader_parameter/shadow_distance = 0.7
+shader_parameter/speed = 52.62
+shader_parameter/softness = 62.385
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ry5kt"]
+shader = ExtResource("4_68xwl")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.7)
+shader_parameter/shadow_distance = 0.775
+shader_parameter/speed = 56.005
+shader_parameter/softness = 62.385
+
+[sub_resource type="Animation" id="Animation_u3rb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/now_entering:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/area_name:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nybob"]
+resource_name = "show"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/now_entering:visible_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 3.95, 4.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/area_name:visible_ratio")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333336, 0.8666667, 3.98, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.8666666, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_68xwl"]
+_data = {
+&"RESET": SubResource("Animation_u3rb4"),
+&"show": SubResource("Animation_nybob")
+}
 
 [node name="player" type="CharacterBody3D" unique_id=1767344172]
 slide_on_ceiling = false
@@ -86,6 +187,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008564621, 1.1060892, -0.1
 visible = false
 spot_range = 4.886
 spot_angle = 39.67
+
+[node name="PlayerGUI" type="Control" parent="." unique_id=1283489311]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1085.0
+offset_bottom = 769.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerGUI" unique_id=2059257767]
+layer = 10
+
+[node name="now_entering" type="Label" parent="PlayerGUI/CanvasLayer" unique_id=1944775443]
+material = SubResource("ShaderMaterial_wwvfn")
+offset_left = 25.0
+offset_top = 20.0
+offset_right = 419.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("3_68xwl")
+theme_override_font_sizes/font_size = 37
+text = "Now entering:"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="area_name" type="Label" parent="PlayerGUI/CanvasLayer" unique_id=1736148070]
+material = SubResource("ShaderMaterial_ry5kt")
+offset_left = 25.0
+offset_top = 59.0
+offset_right = 419.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("3_68xwl")
+theme_override_font_sizes/font_size = 79
+text = "AREA NAME"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="animation" type="AnimationPlayer" parent="PlayerGUI/CanvasLayer" unique_id=1351421174]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_68xwl")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="PlayerGUI/CanvasLayer" unique_id=1607713334]
+
+[node name="AreaEnter" type="AudioStreamPlayer" parent="PlayerGUI/CanvasLayer" unique_id=857700126]
+stream = ExtResource("4_nybob")
 
 [connection signal="focus_exited" from="console/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_changed" from="console/LineEdit" to="." method="_on_line_edit_text_changed"]
