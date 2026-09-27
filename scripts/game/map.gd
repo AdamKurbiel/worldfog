@@ -15,6 +15,14 @@ func SetBlock(pos : Vector2i, object):
 	print("Set " + str(object) + " on "+str(pos.x)+","+str(pos.y))
 
 
+
+func FillContent():
+	for row in content:
+		for block in row:
+			if block == 0:
+
+				pass
+
 func Generate():
 	content = []
 	
@@ -30,7 +38,6 @@ func Generate():
 	var elevator = get_parent().get_node("elevator")
 	pivot = Vector2i(randi_range(1,WIDTH),randi_range(1,HEIGHT))
 	SetBlock(pivot, elevator)
-	
-	print(str(content))
+	FillContent()
 	
 	
