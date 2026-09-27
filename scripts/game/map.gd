@@ -14,14 +14,15 @@ func SetBlock(pos : Vector2i, object):
 	content[pos.x-1][pos.y-1] = object
 	print("Set " + str(object) + " on "+str(pos.x)+","+str(pos.y))
 
-
+func GenerateBlock(pos : Vector2i):
+	print(pos)
 
 func FillContent():
-	for row in content:
-		for block in row:
-			if block == 0:
-
-				pass
+	for i in range(len(content)):
+		for j in range(len(content[i])):
+			#generate blocks on empty spaces
+			if str(content[i][j]) == str(0):
+				GenerateBlock(Vector2i(i,j))
 
 func Generate():
 	content = []
@@ -39,5 +40,3 @@ func Generate():
 	pivot = Vector2i(randi_range(1,WIDTH),randi_range(1,HEIGHT))
 	SetBlock(pivot, elevator)
 	FillContent()
-	
-	
