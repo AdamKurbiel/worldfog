@@ -8,14 +8,22 @@ const WIDTH = 5
 
 @onready var tile = load("res://scenes/game/tile.tscn")
 var content
-var pivot = Vector2i(0,0)
+var global_pivot = Vector3()
 
+func Draw():
+	for i in range(len(content)):
+		for j in range(len(content[i])):
+			if (str(content[i][j]) == '1'):
+				var t = tile.instantiate()
+				t.position = global_pivot + Vector3(i*6,global_pivot.y,j*6)
+				self.add_child(t)
+		
 func SetBlock(pos : Vector2i, object):
 	content[pos.x-1][pos.y-1] = object
 	print("Set " + str(object) + " on "+str(pos.x)+","+str(pos.y))
 
 func GenerateBlock(pos : Vector2i):
-	print(pos)
+	content[pos.x][pos.y] = 1
 
 func FillContent():
 	for i in range(len(content)):
@@ -37,6 +45,9 @@ func Generate():
 	#Now lets pick the random place where elevator is placed
 	#elevator is going to be used as a kind of pivot
 	var elevator = get_parent().get_node("elevator")
-	pivot = Vector2i(randi_range(1,WIDTH),randi_range(1,HEIGHT))
+	var pivot = Vector2i(randi_range(1,WIDTH),randi_range(1,HEIGHT))
+	global_pivot = elevator.position
 	SetBlock(pivot, elevator)
 	FillContent()
+	Draw()
+	print(content)
