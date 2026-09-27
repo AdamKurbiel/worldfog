@@ -24,4 +24,4 @@ func prepareStage():
 
 func _ready() -> void:
 	prepareStage()
-	map.generate()
+	map.Generate()
