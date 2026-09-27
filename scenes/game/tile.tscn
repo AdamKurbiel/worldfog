@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cigyr4tnadbxg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
+size = Vector2(5, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ry5kt"]
+points = PackedVector3Array(-2.5, 0, -2.5, -2.5, 0, 2.5, 2.5, 0, -2.5, 2.5, 0, 2.5)
+
+[node name="tile" type="MeshInstance3D" unique_id=934163967]
+mesh = SubResource("PlaneMesh_jq8tk")
+skeleton = NodePath("../..")
+
+[node name="collision" type="StaticBody3D" parent="." unique_id=1400651482]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 4.7683716e-07)
+
+[node name="shape" type="CollisionShape3D" parent="collision" unique_id=118615353]
+shape = SubResource("ConvexPolygonShape3D_ry5kt")

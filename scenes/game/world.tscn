@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://cos2tenr6genf" path="res://models/materials/falling_mater.tres" id="8_7r4gi"]
 [ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="9_q5onr"]
 [ext_resource type="AudioStream" uid="uid://dqlj5ot2u0ona" path="res://audio/sfx/elevator_amb.mp3" id="10_w7kh3"]
+[ext_resource type="Script" uid="uid://bqnqo45lr5eh1" path="res://scripts/game/map.gd" id="13_st3ua"]
 
 [sub_resource type="Animation" id="Animation_qfnet"]
 length = 0.001
@@ -202,7 +203,7 @@ _data = {
 script = ExtResource("1_e3hyu")
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -15.149512, 0.51292455, 0.12096232)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6, 0.25)
 
 [node name="Control" type="Control" parent="." unique_id=670842810]
 layout_mode = 3
@@ -253,7 +254,7 @@ offset_bottom = 782.0
 color = Color(0, 0, 0, 1)
 
 [node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
-transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -15, -0.020410419, 0)
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0, 0, 0)
 script = ExtResource("5_4mrxx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="elevator" unique_id=1102906453]
@@ -348,5 +349,8 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 
 [node name="animation" type="AnimationPlayer" parent="elevator" unique_id=1627672601]
 libraries/ = SubResource("AnimationLibrary_xo05s")
+
+[node name="map" type="Node3D" parent="." unique_id=1388050487]
+script = ExtResource("13_st3ua")
 
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]

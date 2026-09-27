@@ -4,10 +4,12 @@ extends Node3D
 @onready var elevator : Node3D = $elevator
 @onready var player : CharacterBody3D = $player
 @onready var ambient : AudioStreamPlayer3D = $elevator/ElevatorAmb
+@onready var map : Node3D = $map
+
+var MapContent
 
 func prepareStage():
 	var warmup = 5.0 #time
-	
 	ambient.play()
 	elevator.ride()
 	player.start_shake(warmup*2,0.01)
@@ -18,6 +20,8 @@ func prepareStage():
 	elevator.open()
 	await get_tree().create_timer(0.5).timeout
 	player.areaNotify("Test name")
+	player.toggleFlashlight()
 
 func _ready() -> void:
 	prepareStage()
+	map.generate()

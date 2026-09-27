@@ -13,6 +13,8 @@ extends CharacterBody3D
 @onready var areaEnterSfx : AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
 @onready var areaNameLabel : Label = $PlayerGUI/CanvasLayer/area_name
 
+func toggleFlashlight():
+	$flashlight.visible = true
 func areaNotify(area_name):
 	areaNotifyAnimation.play("show")
 	areaEnterSfx.play()

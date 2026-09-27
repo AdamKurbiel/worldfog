@@ -12,7 +12,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jeejg"]
 radius = 0.30615234
-height = 2.024109
+height = 1.8342897
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wwvfn"]
 shader = ExtResource("4_68xwl")
@@ -166,7 +166,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="." unique_id=1397443857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39413452, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2992249, 0)
 shape = SubResource("CapsuleShape3D_jeejg")
 
 [node name="checkup" type="RayCast3D" parent="." unique_id=934379869]
@@ -174,10 +174,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9313642, 0)
 target_position = Vector3(0, 2, 0)
 
 [node name="head" type="Node3D" parent="." unique_id=509243314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0983601, -0.25991637)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0956864, -0.1646043)
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=416926787]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.13877451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005147934, 0.038333148)
 current = true
 fov = 85.0
 near = 0.004
