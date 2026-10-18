@@ -210,7 +210,7 @@ func _physics_process(delta: float) -> void:
 		)
 		
 	
-	if console.visible: return
+	if console.visible || self.position.y < -1000: return
 	move_and_slide()
 
 
