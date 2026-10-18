@@ -1,53 +1,13 @@
-##Created by Adam Kurbiel
-#Note: This is going to be a nightmare
+## Created by Adam Kurbiel
+# Note: This is going to be a nightmare
 
 extends Node3D
 
-const HEIGHT = 3
-const WIDTH = 5
+const HEIGHT := 3
+const WIDTH := 5
+const TILE_SIZE := 6
 
-@onready var tile = load("res://scenes/game/tile.tscn")
-var content
-var global_pivot = Vector3()
+const TILE = preload("res://scenes/game/tile.tscn")
 
-func Draw():
-	for i in range(len(content)):
-		for j in range(len(content[i])):
-			if (str(content[i][j]) == '1'):
-				var t = tile.instantiate()
-				t.position = global_pivot + Vector3(i*6,global_pivot.y,j*6)
-				self.add_child(t)
-		
-func SetBlock(pos : Vector2i, object):
-	content[pos.x-1][pos.y-1] = object
-	print("Set " + str(object) + " on "+str(pos.x)+","+str(pos.y))
-
-func GenerateBlock(pos : Vector2i):
-	content[pos.x][pos.y] = 1
-
-func FillContent():
-	for i in range(len(content)):
-		for j in range(len(content[i])):
-			#generate blocks on empty spaces
-			if str(content[i][j]) == str(0):
-				GenerateBlock(Vector2i(i,j))
-
-func Generate():
-	content = []
-	
-	#we fillin da table
-	for i in range(WIDTH):
-		var row = []
-		for j in range(HEIGHT):
-			row.append(0)
-		content.append(row)
-	
-	#Now lets pick the random place where elevator is placed
-	#elevator is going to be used as a kind of pivot
-	var elevator = get_parent().get_node("elevator")
-	var pivot = Vector2i(randi_range(1,WIDTH),randi_range(1,HEIGHT))
-	global_pivot = elevator.position
-	SetBlock(pivot, elevator)
-	FillContent()
-	Draw()
-	print(content)
+func Generate(elevator : Node3D) -> void:
+	print(elevator.name)
