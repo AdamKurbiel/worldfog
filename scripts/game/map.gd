@@ -7,29 +7,35 @@ const TILE = preload("res://scenes/game/tile.tscn")
 
 const HEIGHT := 5
 const WIDTH := 5
-const TILE_SIZE := 5.5
+const TILE_SIZE := 5.2
 
 var content = []
 
 
 func Generate(elevator : Node3D) -> void:
 	#ways to spawn elevator:
-	#1. on one of the sides of tiles (not corners), always rotated
-	#to the inner way of the map,
-	#2. Inside map
+	#1. On the wall of the map,
+	#2. Centered
+	var OFFSET : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE,0,0)
+	var CLEAR_POINT : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE - OFFSET.x,0,0)
 	
-	var offset = -(int(HEIGHT/2) * TILE_SIZE)
+	var chosenWay : int = randi_range(0,1)	
+	if (chosenWay == 1):
+		OFFSET.x = (int(HEIGHT/2) * TILE_SIZE)
+		OFFSET.z = (int(WIDTH/2) * TILE_SIZE)
+		CLEAR_POINT.z = (int(WIDTH/2) * TILE_SIZE - OFFSET.z)
 	
 	content = []
 	for i in range(HEIGHT):
 		var row = []
 		for j in range(WIDTH):
-			var EMPTY_TILE = TILE.instantiate()
-			self.add_child(EMPTY_TILE)
-			EMPTY_TILE.position = Vector3(i*TILE_SIZE  + (offset),0,j*TILE_SIZE)
+			var TILE_POSITION = Vector3(i*TILE_SIZE  - OFFSET.x,0,j*TILE_SIZE - OFFSET.z)
 			
-			row.append(EMPTY_TILE)
+			if (TILE_POSITION != CLEAR_POINT):
+				var EMPTY_TILE = TILE.instantiate()
+				EMPTY_TILE.position = TILE_POSITION
+				self.add_child(EMPTY_TILE)
+				
+				row.append(EMPTY_TILE)
+				
 		content.append(row)
-		
-		
-	print(content)
