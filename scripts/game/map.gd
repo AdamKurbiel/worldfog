@@ -19,8 +19,7 @@ func Generate(elevator : Node3D) -> void:
 	var OFFSET : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE,0,0)
 	var CLEAR_POINT : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE - OFFSET.x,0,0)
 	
-	var chosenWay : int = randi_range(0,1)	
-	if (chosenWay == 1):
+	if (randi_range(0,1) == 1):
 		OFFSET.x = (int(HEIGHT/2) * TILE_SIZE)
 		OFFSET.z = (int(WIDTH/2) * TILE_SIZE)
 		CLEAR_POINT.z = (int(WIDTH/2) * TILE_SIZE - OFFSET.z)
