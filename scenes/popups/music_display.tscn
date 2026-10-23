@@ -98,7 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 6.1, 7),
 "transitions": PackedFloat32Array(0.26794347, 2.732081, 2.732081, 0.26794347),
 "update": 0,
-"values": [Vector2(1080, 13), Vector2(974, 13), Vector2(974, 13), Vector2(1080, 13)]
+"values": [Vector2(1095, 13), Vector2(974, 13), Vector2(974, 13), Vector2(1095, 13)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -136,6 +136,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 12.0
+offset_right = -14.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1htgv")
@@ -144,7 +148,7 @@ script = ExtResource("1_1htgv")
 anchors_preset = 0
 offset_left = 974.0
 offset_top = 13.0
-offset_right = 1013.9994
+offset_right = 1013.9995
 offset_bottom = 53.0
 scale = Vector2(0.0951805, 0.0951805)
 
@@ -153,7 +157,7 @@ position = Vector2(505, 427)
 texture = ExtResource("2_uvt7y")
 
 [node name="Md4" type="Sprite2D" parent="md" unique_id=782575230]
-position = Vector2(539, 417)
+position = Vector2(535.82385, 420.2542)
 texture = ExtResource("3_jll1t")
 
 [node name="Md2" type="Sprite2D" parent="md" unique_id=2039894672]
