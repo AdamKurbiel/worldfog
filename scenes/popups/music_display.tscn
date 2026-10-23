@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://cgly4yweeveth"]
+
+[ext_resource type="Script" uid="uid://bkxek6sbxhtfq" path="res://scripts/popups/music_display.gd" id="1_1htgv"]
+[ext_resource type="Texture2D" uid="uid://bwboyww1rm7qv" path="res://ui/popups/md/md_3.png" id="2_uvt7y"]
+[ext_resource type="Texture2D" uid="uid://db2a4tuqw3tcq" path="res://ui/popups/md/md_4.png" id="3_jll1t"]
+[ext_resource type="Texture2D" uid="uid://bvubqh1yrah5a" path="res://ui/popups/md/md_2.png" id="4_662oy"]
+[ext_resource type="Texture2D" uid="uid://bja3tpkss3ul" path="res://ui/popups/md/md_1.png" id="5_hcg2a"]
+[ext_resource type="Texture2D" uid="uid://cad1qdpvpb8pc" path="res://ui/popups/md/md_0.png" id="6_ox65l"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="7_eikmu"]
+
+[sub_resource type="Animation" id="Animation_03qq8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("md/Md3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_b4glx"]
+resource_name = "new_animation"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("md/Md3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1sl0k"]
+_data = {
+&"RESET": SubResource("Animation_03qq8"),
+&"new_animation": SubResource("Animation_b4glx")
+}
+
+[node name="Control" type="Control" unique_id=68856705]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1htgv")
+
+[node name="md" type="Control" parent="." unique_id=1442841230]
+anchors_preset = 0
+offset_left = 979.0
+offset_top = 4.0
+offset_right = 1019.0
+offset_bottom = 44.0
+scale = Vector2(0.0951805, 0.0951805)
+
+[node name="Md3" type="Sprite2D" parent="md" unique_id=1601348785]
+position = Vector2(505, 427)
+texture = ExtResource("2_uvt7y")
+
+[node name="Md4" type="Sprite2D" parent="md" unique_id=782575230]
+position = Vector2(539, 417)
+texture = ExtResource("3_jll1t")
+
+[node name="Md2" type="Sprite2D" parent="md" unique_id=2039894672]
+position = Vector2(814, 417)
+texture = ExtResource("4_662oy")
+
+[node name="Md1" type="Sprite2D" parent="md" unique_id=1354239853]
+position = Vector2(523, 104)
+texture = ExtResource("5_hcg2a")
+
+[node name="Md0" type="Sprite2D" parent="md" unique_id=237280939]
+position = Vector2(528, 717)
+texture = ExtResource("6_ox65l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="md" unique_id=1437688238]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_1sl0k")
+autoplay = &"RESET"
+
+[node name="song_name" type="Label" parent="." unique_id=1247710097]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 8.0
+offset_right = 984.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("7_eikmu")
+theme_override_font_sizes/font_size = 24
+text = "♪ : THE MOON IS WATCHING"
+horizontal_alignment = 2
+
+[node name="author_name" type="Label" parent="." unique_id=1192172600]
+layout_mode = 0
+offset_left = 601.0
+offset_top = 33.0
+offset_right = 983.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("7_eikmu")
+theme_override_font_sizes/font_size = 18
+text = "Aswrek"
+horizontal_alignment = 2
