@@ -171,7 +171,7 @@ texture = ExtResource("6_ox65l")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="md" unique_id=1437688238]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_1sl0k")
-autoplay = &"RESET"
+autoplay = &"new_animation"
 
 [node name="song_name" type="Label" parent="." unique_id=1247710097]
 layout_mode = 0
