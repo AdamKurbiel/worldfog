@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://cigyr4tnadbxg"]
 
+[ext_resource type="Texture2D" uid="uid://e6shgh4bwscc" path="res://models/36_iron metal plate texture-seamless.jpg" id="1_wwe4q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmg38"]
+albedo_texture = ExtResource("1_wwe4q")
+uv1_scale = Vector3(6, 6, 6)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
 size = Vector2(5, 5)
 
@@ -7,6 +13,7 @@ size = Vector2(5, 5)
 points = PackedVector3Array(-2.5, 0, -2.5, -2.5, 0, 2.5, 2.5, 0, -2.5, 2.5, 0, 2.5)
 
 [node name="tile" type="MeshInstance3D" unique_id=934163967]
+material_override = SubResource("StandardMaterial3D_bmg38")
 mesh = SubResource("PlaneMesh_jq8tk")
 skeleton = NodePath("../..")
 

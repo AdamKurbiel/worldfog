@@ -5,25 +5,22 @@ extends Node3D
 
 const TILE = preload("res://scenes/game/tile.tscn")
 
-const HEIGHT := 5
-const WIDTH := 5
-const TILE_SIZE := 5.2
+const HEIGHT := 3
+const WIDTH := 3
+const TILE_SIZE := 5
 
 var content = []
-
 
 func Generate(elevator : Node3D) -> void:
 	#ways to spawn elevator:
 	#1. On the wall of the map,
 	#2. Centered
-	var OFFSET : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE,0,0)
-	var CLEAR_POINT : Vector3 = Vector3(int(HEIGHT/2) * TILE_SIZE - OFFSET.x,0,0)
+	var OFFSET : Vector3
+	var CLEAR_POINT : Vector3
 	
-	var chosenWay : int = randi_range(0,1)	
-	if (chosenWay == 1):
-		OFFSET.x = (int(HEIGHT/2) * TILE_SIZE)
-		OFFSET.z = (int(WIDTH/2) * TILE_SIZE)
-		CLEAR_POINT.z = (int(WIDTH/2) * TILE_SIZE - OFFSET.z)
+	OFFSET.x = (int(HEIGHT/2) * TILE_SIZE)
+	OFFSET.z = (int(WIDTH/2) * TILE_SIZE)
+	CLEAR_POINT.z = (int(WIDTH/2) * TILE_SIZE - OFFSET.z)
 	
 	content = []
 	for i in range(HEIGHT):

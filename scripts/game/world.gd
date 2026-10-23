@@ -5,6 +5,7 @@ extends Node3D
 @onready var player : CharacterBody3D = $player
 @onready var ambient : AudioStreamPlayer3D = $elevator/ElevatorAmb
 @onready var map : Node3D = $map
+var CurrentStage = 1
 
 var MapContent
 
@@ -19,7 +20,7 @@ func prepareStage():
 	await get_tree().create_timer(1.0).timeout
 	elevator.open()
 	await get_tree().create_timer(0.5).timeout
-	player.areaNotify("Test name")
+	player.areaNotify("Stage "+str(CurrentStage))
 	player.toggleFlashlight()
 
 func _ready() -> void:
