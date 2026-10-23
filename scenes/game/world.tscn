@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="9_q5onr"]
 [ext_resource type="AudioStream" uid="uid://dqlj5ot2u0ona" path="res://audio/sfx/elevator_amb.mp3" id="10_w7kh3"]
 [ext_resource type="Script" uid="uid://bqnqo45lr5eh1" path="res://scripts/game/map.gd" id="13_st3ua"]
+[ext_resource type="AudioStream" uid="uid://cg7cixyc05mpi" path="res://audio/music/THE_MOON_IS_WATCHING.mp3" id="14_7jg8g"]
 
 [sub_resource type="Animation" id="Animation_qfnet"]
 length = 0.001
@@ -352,5 +353,8 @@ libraries/ = SubResource("AnimationLibrary_xo05s")
 
 [node name="map" type="Node3D" parent="." unique_id=1388050487]
 script = ExtResource("13_st3ua")
+
+[node name="TheMoonIsWatching" type="AudioStreamPlayer" parent="." unique_id=915460200]
+stream = ExtResource("14_7jg8g")
 
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]
