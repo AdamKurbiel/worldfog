@@ -46,6 +46,91 @@ _data = {
 &"new_animation": SubResource("Animation_b4glx")
 }
 
+[sub_resource type="Animation" id="Animation_1htgv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("md:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(974, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("song_name:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("author_name:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uvt7y"]
+resource_name = "fade"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("md:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 6.1, 7),
+"transitions": PackedFloat32Array(0.26794347, 2.732081, 2.732081, 0.26794347),
+"update": 0,
+"values": [Vector2(1080, 13), Vector2(974, 13), Vector2(974, 13), Vector2(1080, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("song_name:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 5.4509583, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("author_name:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.29958305, 0.5, 5.4350195, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_662oy"]
+_data = {
+&"RESET": SubResource("Animation_1htgv"),
+&"fade": SubResource("Animation_uvt7y")
+}
+
 [node name="Control" type="Control" unique_id=68856705]
 layout_mode = 3
 anchors_preset = 15
@@ -57,10 +142,10 @@ script = ExtResource("1_1htgv")
 
 [node name="md" type="Control" parent="." unique_id=1442841230]
 anchors_preset = 0
-offset_left = 979.0
-offset_top = 4.0
-offset_right = 1019.0
-offset_bottom = 44.0
+offset_left = 974.0
+offset_top = 13.0
+offset_right = 1013.9994
+offset_bottom = 53.0
 scale = Vector2(0.0951805, 0.0951805)
 
 [node name="Md3" type="Sprite2D" parent="md" unique_id=1601348785]
@@ -90,10 +175,10 @@ autoplay = &"RESET"
 
 [node name="song_name" type="Label" parent="." unique_id=1247710097]
 layout_mode = 0
-offset_left = 602.0
-offset_top = 8.0
-offset_right = 984.0
-offset_bottom = 37.0
+offset_left = 597.0
+offset_top = 17.0
+offset_right = 979.0
+offset_bottom = 46.0
 theme_override_fonts/font = ExtResource("7_eikmu")
 theme_override_font_sizes/font_size = 24
 text = "♪ : LOREM IPSUM"
@@ -101,11 +186,14 @@ horizontal_alignment = 2
 
 [node name="author_name" type="Label" parent="." unique_id=1192172600]
 layout_mode = 0
-offset_left = 601.0
-offset_top = 33.0
-offset_right = 983.0
-offset_bottom = 62.0
+offset_left = 596.0
+offset_top = 42.0
+offset_right = 978.0
+offset_bottom = 71.0
 theme_override_fonts/font = ExtResource("7_eikmu")
 theme_override_font_sizes/font_size = 18
 text = "FOOBAR"
 horizontal_alignment = 2
+
+[node name="fade" type="AnimationPlayer" parent="." unique_id=229364156]
+libraries/ = SubResource("AnimationLibrary_662oy")
