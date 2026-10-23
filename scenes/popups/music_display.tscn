@@ -96,7 +96,7 @@ offset_right = 984.0
 offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("7_eikmu")
 theme_override_font_sizes/font_size = 24
-text = "♪ : THE MOON IS WATCHING"
+text = "♪ : LOREM IPSUM"
 horizontal_alignment = 2
 
 [node name="author_name" type="Label" parent="." unique_id=1192172600]
@@ -107,5 +107,5 @@ offset_right = 983.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("7_eikmu")
 theme_override_font_sizes/font_size = 18
-text = "Aswrek"
+text = "FOOBAR"
 horizontal_alignment = 2
