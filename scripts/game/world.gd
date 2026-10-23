@@ -24,6 +24,9 @@ func prepareStage():
 	player.toggleFlashlight()
 	await get_tree().create_timer(1).timeout
 	$TheMoonIsWatching.play()
+	var music_display = load("res://scenes/popups/music_display.tscn").instantiate()
+	player.get_node("PlayerGUI").add_child(music_display)
+	music_display.Show("The moon is watching","Aswrek")
 
 func _ready() -> void:
 	prepareStage()
