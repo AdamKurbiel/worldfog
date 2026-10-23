@@ -26,7 +26,7 @@ func prepareStage():
 	$TheMoonIsWatching.play()
 	var music_display = load("res://scenes/popups/music_display.tscn").instantiate()
 	player.get_node("PlayerGUI").add_child(music_display)
-	music_display.Show("The moon is watching","Aswrek")
+	music_display.Show("THE MOON IS WATCHING","Aswrek")
 
 func _ready() -> void:
 	prepareStage()
