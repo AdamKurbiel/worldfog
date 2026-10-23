@@ -10,4 +10,5 @@
 
 ## About
 WORLDFOG is a fast, time-based roguelike game, set in dystopian biomechanical world.
+
 This game is heavily inspired by KLETKA and ULTRAKILL.
