@@ -131,7 +131,7 @@ _data = {
 &"fade": SubResource("Animation_uvt7y")
 }
 
-[node name="Control" type="Control" unique_id=68856705]
+[node name="music_display" type="Control" unique_id=68856705]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,3 +197,5 @@ horizontal_alignment = 2
 
 [node name="fade" type="AnimationPlayer" parent="." unique_id=229364156]
 libraries/ = SubResource("AnimationLibrary_662oy")
+
+[connection signal="animation_finished" from="fade" to="." method="_on_fade_animation_finished"]
