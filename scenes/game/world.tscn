@@ -197,6 +197,16 @@ _data = {
 &"open": SubResource("Animation_o8fc1")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jg8g"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_740o0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_740o0"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
 [node name="World" type="Node3D" unique_id=1923274931]
 script = ExtResource("1_e3hyu")
 
@@ -278,11 +288,11 @@ transform = Transform3D(1.0000001, 0, 0, 0, -4.3711395e-08, -1.0000001, 0, 1.000
 mesh = SubResource("PlaneMesh_3xd07")
 
 [node name="metalGrid1" type="MeshInstance3D" parent="elevator" unique_id=1397722398]
-transform = Transform3D(7.9391455e-08, 1.0000002, -4.371141e-08, -1.08819494e-16, -4.3711395e-08, -1.0000001, -1.0000002, 7.9391455e-08, -3.640076e-15, -3.1156273, 4.6131496, -1.0613073)
+transform = Transform3D(7.939146e-08, 1.0000002, -4.3711413e-08, -1.088195e-16, -4.3711395e-08, -1.0000001, -1.0000002, 7.939146e-08, -3.640076e-15, -3.036195, 4.61315, -1.0613073)
 mesh = SubResource("PlaneMesh_qfnet")
 
 [node name="metalGrid2" type="MeshInstance3D" parent="elevator" unique_id=885945198]
-transform = Transform3D(-1.6681429e-07, -1.0000002, 4.3711417e-08, -1.0881962e-16, -4.3711395e-08, -1.0000001, 1.0000002, -1.6681429e-07, 7.461448e-15, 2.158928, 4.6131496, 1.0474111)
+transform = Transform3D(-1.6681432e-07, -1.0000002, 4.3711427e-08, -1.0881962e-16, -4.3711395e-08, -1.0000001, 1.0000002, -1.6681432e-07, 7.461448e-15, 2.0398757, 4.61315, 1.0474113)
 mesh = SubResource("PlaneMesh_qfnet")
 
 [node name="gate" type="MeshInstance3D" parent="elevator" unique_id=1843676378]
@@ -309,13 +319,13 @@ spot_angle = 78.22
 [node name="outerWalls" type="Node3D" parent="elevator" unique_id=1603815402]
 
 [node name="wall0" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=136099399]
-transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, -3.2439597, 3.2906194, 1.5990349)
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, -3.1861959, 3.29062, 1.5990356)
 material_override = ExtResource("8_7r4gi")
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
 [node name="wall1" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1859715922]
-transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 2.2343452, 3.3765957, 1.3075414)
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 2.1898558, 3.3765957, 1.3075416)
 material_override = ExtResource("8_7r4gi")
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
@@ -343,6 +353,29 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 
 [node name="animation" type="AnimationPlayer" parent="elevator" unique_id=1627672601]
 libraries/ = SubResource("AnimationLibrary_xo05s")
+
+[node name="entrance" type="Node3D" parent="elevator" unique_id=804331359]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="elevator/entrance" unique_id=1452614580]
+transform = Transform3D(2.5000007, 0, 0, 0, 1.0000001, 0, 0, 0, 1.71, -0.48812786, -0.73414123, 5.688077)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="elevator/entrance/StaticBody3D" unique_id=1159550129]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.55, 4.4703484e-08, 0, -0.44097733)
+mesh = SubResource("PlaneMesh_jq8tk")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/StaticBody3D" unique_id=1732362727]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.55, 4.4703484e-08, 0, -0.44097733)
+shape = SubResource("ConvexPolygonShape3D_7jg8g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="elevator/entrance/StaticBody3D" unique_id=515811873]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.41999987, 0, -0.49999988, 0.72746134, 0.0003017038, 0.4307455, 0.8055308)
+mesh = SubResource("PlaneMesh_740o0")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="elevator/entrance/StaticBody3D" unique_id=1076392578]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.41999987, 0, -0.49999988, 0.72746134, 0.0003017038, 0.4307455, 0.8055308)
+shape = SubResource("ConvexPolygonShape3D_740o0")
 
 [node name="map" type="Node3D" parent="." unique_id=1388050487]
 script = ExtResource("13_st3ua")
