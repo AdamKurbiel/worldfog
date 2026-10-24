@@ -5,6 +5,7 @@ extends Node3D
 @onready var animation: AnimationPlayer = $animation
 @onready var rollSound: AudioStreamPlayer3D = $gate/Roll
 @onready var elevatorAmbient: AudioStreamPlayer3D = $ElevatorAmb
+@onready var gate : MeshInstance3D = $gate
 
 var elevatorSpeed : float = 1.25
 var elevatorMoveTextureAlpha : float = 1.0
@@ -42,3 +43,5 @@ func _process(_delta: float) -> void:
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "open":
 		rollSound.stop()
+		gate.visible = false
+		
