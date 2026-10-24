@@ -323,6 +323,7 @@ skeleton = NodePath("../..")
 [node name="wall2" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=280740420]
 transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.5175401, 3.3469918, -1.2300433)
 material_override = ExtResource("8_7r4gi")
+transparency = 0.01
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
