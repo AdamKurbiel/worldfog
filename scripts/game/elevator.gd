@@ -6,7 +6,8 @@ extends Node3D
 @onready var rollSound: AudioStreamPlayer3D = $gate/Roll
 @onready var elevatorAmbient: AudioStreamPlayer3D = $ElevatorAmb
 
-var elevatorSpeed : float = 0.5 
+var elevatorSpeed : float = 1.0
+var elevatorMoveTextureAlpha : float = 1.0
 var working : bool = false
 var walls_moving_material : ShaderMaterial
 
@@ -30,9 +31,13 @@ func stop():
 func _process(_delta: float) -> void:
 	if (!working):
 		elevatorSpeed = lerpf(elevatorSpeed, 0,0.01)
+		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,0,0.01)
 	else:
-		elevatorSpeed = lerpf(elevatorSpeed, 0.5,0.005)
+		elevatorSpeed = lerpf(elevatorSpeed, 1.0,0.005)
+		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,1.0,0.0001)
 	walls_moving_material.set_shader_parameter("speed", elevatorSpeed)
+	walls_moving_material.set_shader_parameter("alpha", elevatorMoveTextureAlpha)
+	
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "open":
