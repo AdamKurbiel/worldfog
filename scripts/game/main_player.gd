@@ -50,7 +50,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fastquit"):
 		get_tree().quit()
 
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !console.visible:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 
@@ -141,7 +141,7 @@ func _physics_process(delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			console_line.release_focus()
 
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("sprint") and !console.visible:
 		current_speed = sprinting_speed
 	else:
 		current_speed = walking_speed
@@ -171,7 +171,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !console.visible:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir: Vector2 = Input.get_vector(
@@ -180,6 +180,7 @@ func _physics_process(delta: float) -> void:
 		"forward",
 		"backward"
 	)
+	if console.visible: input_dir = Vector2.ZERO
 
 
 	var target_direction: Vector3 = (
@@ -210,15 +211,13 @@ func _physics_process(delta: float) -> void:
 		)
 		
 	
-	if console.visible || self.position.y < -1000: return
+	if self.position.y < -1000: return
 	move_and_slide()
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	var pos = console_line.caret_column
-	if new_text == '`':
-		console_line.text = new_text.left(-1)
-	console_line.text = new_text.to_upper()
+	console_line.text = new_text.replace("`", "")
 	console_line.caret_column = pos
 	
 
@@ -227,5 +226,4 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	console.visible = false
 	console_line.release_focus()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	print(new_text)
+	console.execute_command(new_text)

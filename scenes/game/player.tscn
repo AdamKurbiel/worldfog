@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://txptjwwrcwti" path="res://scripts/game/main_player.gd" id="1_u3rb4"]
 [ext_resource type="PackedScene" uid="uid://cc0d4dhtobjlv" path="res://scenes/game/debug.tscn" id="2_nybob"]
 [ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="3_68xwl"]
+[ext_resource type="Script" uid="uid://dcp21fnpdrnr2" path="res://scenes/game/console.gd" id="3_wwvfn"]
 [ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="4_68xwl"]
 [ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
 
@@ -127,6 +128,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1085.0
 offset_bottom = 768.0
+script = ExtResource("3_wwvfn")
 
 [node name="LineEdit" type="LineEdit" parent="console" unique_id=1272943058]
 layout_mode = 1
