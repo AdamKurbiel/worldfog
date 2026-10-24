@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dcp21fnpdrnr2" path="res://scenes/game/console.gd" id="3_wwvfn"]
 [ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="4_68xwl"]
 [ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
+[ext_resource type="Script" uid="uid://pebvxohegd52" path="res://scripts/game/material_ray.gd" id="5_t8yk2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
 
@@ -171,9 +172,14 @@ vertical_alignment = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2992249, 0)
 shape = SubResource("CapsuleShape3D_jeejg")
 
-[node name="checkup" type="RayCast3D" parent="." unique_id=934379869]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9313642, 0)
-target_position = Vector3(0, 2, 0)
+[node name="materialRay" type="RayCast3D" parent="." unique_id=934379869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5313516, 0)
+target_position = Vector3(0, -0.2, 0)
+script = ExtResource("5_t8yk2")
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="materialRay" unique_id=6368816]
+volume_db = -5.0
+bus = &"ingame"
 
 [node name="head" type="Node3D" parent="." unique_id=509243314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0956864, -0.1646043)

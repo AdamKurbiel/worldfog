@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 @onready var head: Node3D = $head
 @onready var standing_collision_shape: CollisionShape3D = $standing_collision_shape
-@onready var checkup: RayCast3D = $checkup
+@onready var materialRay: RayCast3D = $materialRay
 @onready var flashlight: Node3D = $flashlight
 @onready var debug: Control = $debug
 @onready var console: Control = $console
@@ -212,6 +212,9 @@ func _physics_process(delta: float) -> void:
 		
 	
 	if self.position.y < -1000: return
+	
+
+			
 	move_and_slide()
 
 
