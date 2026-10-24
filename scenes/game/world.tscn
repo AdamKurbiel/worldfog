@@ -122,10 +122,7 @@ uv2_offset = Vector3(0, 0.905, 0)
 [sub_resource type="BoxMesh" id="BoxMesh_jq8tk"]
 lightmap_size_hint = Vector2i(539, 511)
 material = SubResource("StandardMaterial3D_qfnet")
-size = Vector3(8, 1, 38.837463)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qfnet"]
-size = Vector3(7.8378906, 0.7841797, 23.322449)
+size = Vector3(5.393921, 0.001, 6.353615)
 
 [sub_resource type="Animation" id="Animation_q5onr"]
 length = 0.001
@@ -312,26 +309,21 @@ spot_angle = 78.22
 [node name="outerWalls" type="Node3D" parent="elevator" unique_id=1603815402]
 
 [node name="wall0" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=136099399]
-transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, -4.4519653, 6.780551, 0.7078442)
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, -3.2439597, 3.2906194, 1.5990349)
 material_override = ExtResource("8_7r4gi")
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
 [node name="wall1" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1859715922]
-transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 3.9401245, 6.5880694, 0.7078442)
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 2.2343452, 3.3765957, 1.3075414)
 material_override = ExtResource("8_7r4gi")
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
 [node name="wall2" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=280740420]
-transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.51754, 6.817125, -2.570845)
+transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.5175401, 3.3469918, -1.2300433)
 material_override = ExtResource("8_7r4gi")
 mesh = SubResource("BoxMesh_jq8tk")
-skeleton = NodePath("../..")
-
-[node name="wall3" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1368293986]
-transform = Transform3D(-1.0000001, -8.742279e-08, -3.8213718e-15, 1.7357237e-22, -4.3711395e-08, 1.0000001, -8.742279e-08, 1.0000001, 4.3711395e-08, -0.10152435, 18.28855, 4.2565756)
-mesh = SubResource("BoxMesh_qfnet")
 skeleton = NodePath("../..")
 
 [node name="ElevatorAmb" type="AudioStreamPlayer3D" parent="elevator" unique_id=249119398]
