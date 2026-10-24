@@ -58,7 +58,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(974, 13)]
+"values": [Vector2(1100, 13)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,7 +70,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -82,7 +82,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_uvt7y"]
@@ -146,9 +146,9 @@ script = ExtResource("1_1htgv")
 
 [node name="md" type="Control" parent="." unique_id=1442841230]
 anchors_preset = 0
-offset_left = 974.0
+offset_left = 1100.0
 offset_top = 13.0
-offset_right = 1013.9995
+offset_right = 1139.9995
 offset_bottom = 53.0
 scale = Vector2(0.0951805, 0.0951805)
 
@@ -178,6 +178,7 @@ libraries/ = SubResource("AnimationLibrary_1sl0k")
 autoplay = &"new_animation"
 
 [node name="song_name" type="Label" parent="." unique_id=1247710097]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 597.0
 offset_top = 17.0
@@ -189,6 +190,7 @@ text = "♪ : LOREM IPSUM"
 horizontal_alignment = 2
 
 [node name="author_name" type="Label" parent="." unique_id=1192172600]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 596.0
 offset_top = 42.0
