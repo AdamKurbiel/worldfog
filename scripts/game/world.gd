@@ -10,7 +10,7 @@ var CurrentStage: int = 1
 var stage_skipped: bool = false
 var stage_running: bool = false
 
-var stage_name = "SWAGino"
+var stage_name = "Prototype"
 
 
 func prepareStage() -> void:
