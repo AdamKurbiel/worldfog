@@ -178,8 +178,6 @@ target_position = Vector3(0, -0.2, 0)
 script = ExtResource("5_t8yk2")
 
 [node name="footsteps" type="AudioStreamPlayer3D" parent="materialRay" unique_id=6368816]
-volume_db = -5.0
-bus = &"ingame"
 
 [node name="head" type="Node3D" parent="." unique_id=509243314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0956864, -0.1646043)

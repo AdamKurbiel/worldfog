@@ -82,3 +82,6 @@ func hello() -> void:
 
 func say(content: Variant) -> void:
 	print(content)
+
+func skip():
+	get_parent().get_parent().call("skipStage")

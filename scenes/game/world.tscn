@@ -387,7 +387,7 @@ script = ExtResource("13_st3ua")
 
 [node name="TheMoonIsWatching" type="AudioStreamPlayer" parent="." unique_id=915460200]
 stream = ExtResource("14_7jg8g")
-volume_db = -80.0
+bus = &"MUSIC"
 parameters/looping = true
 
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]
