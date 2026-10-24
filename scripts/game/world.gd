@@ -20,7 +20,7 @@ func prepareStage():
 	await get_tree().create_timer(1.0).timeout
 	elevator.open()
 	await get_tree().create_timer(0.5).timeout
-	player.areaNotify("Skibidi sigma")
+	player.areaNotify("SWAGino")
 	player.toggleFlashlight()
 	await get_tree().create_timer(1).timeout
 	$TheMoonIsWatching.play()
