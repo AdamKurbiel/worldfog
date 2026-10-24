@@ -86,18 +86,8 @@ size = Vector3(5.0148926, 1.045227, 5.006714)
 material = ExtResource("6_qfnet")
 size = Vector2(5.16, 3.8)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i7141"]
-load_path = "res://.godot/imported/71_chrome mesh steel perforate metal texture-seamless.png-ce92315dfff666d8d9b842eaf4fdfe40.s3tc.ctex"
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_4mrxx"]
-albedo_texture = SubResource("CompressedTexture2D_i7141")
-uv1_scale = Vector3(1.155, 2.9, 3.92)
-uv1_offset = Vector3(0.08, 0.025, 0)
-proximity_fade_enabled = true
-proximity_fade_distance = 0.01
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_qfnet"]
-material = SubResource("ORMMaterial3D_4mrxx")
+material = ExtResource("6_qfnet")
 size = Vector2(2.105, 3.7)
 center_offset = Vector3(-1.055, 0, 0)
 
@@ -113,10 +103,14 @@ size = Vector3(4.2999268, 0.31750488, 7.291992)
 size = Vector3(6, 0.4414673, 7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfnet"]
+transparency = 1
+blend_mode = 2
+cull_mode = 2
 albedo_texture = ExtResource("7_4mrxx")
-metallic = 0.3
+metallic = 0.26
+metallic_specular = 0.42
 normal_scale = -9.47
-uv1_scale = Vector3(4.17, 13.29, 44.32)
+uv1_scale = Vector3(9.4, 30, 100)
 uv2_offset = Vector3(0, 0.905, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jq8tk"]
@@ -288,11 +282,11 @@ transform = Transform3D(1.0000001, 0, 0, 0, -4.3711395e-08, -1.0000001, 0, 1.000
 mesh = SubResource("PlaneMesh_3xd07")
 
 [node name="metalGrid1" type="MeshInstance3D" parent="elevator" unique_id=1397722398]
-transform = Transform3D(7.939146e-08, 1.0000002, -4.3711413e-08, -1.088195e-16, -4.3711395e-08, -1.0000001, -1.0000002, 7.939146e-08, -3.640076e-15, -3.036195, 4.61315, -1.0613073)
+transform = Transform3D(7.939146e-08, 1.0000002, -4.3711417e-08, -1.088195e-16, -4.3711395e-08, -1.0000001, -1.0000002, 7.939146e-08, -3.640076e-15, -3.1031106, 4.61315, -1.0613073)
 mesh = SubResource("PlaneMesh_qfnet")
 
 [node name="metalGrid2" type="MeshInstance3D" parent="elevator" unique_id=885945198]
-transform = Transform3D(-1.6681432e-07, -1.0000002, 4.3711427e-08, -1.0881962e-16, -4.3711395e-08, -1.0000001, 1.0000002, -1.6681432e-07, 7.461448e-15, 2.0398757, 4.61315, 1.0474113)
+transform = Transform3D(-1.6681432e-07, -1.0000002, 4.3711427e-08, -1.0881962e-16, -4.3711395e-08, -1.0000001, 1.0000002, -1.6681432e-07, 7.461448e-15, 2.0397766, 4.61315, 1.0474113)
 mesh = SubResource("PlaneMesh_qfnet")
 
 [node name="gate" type="MeshInstance3D" parent="elevator" unique_id=1843676378]
@@ -325,8 +319,9 @@ mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
 [node name="wall1" type="MeshInstance3D" parent="elevator/outerWalls" unique_id=1859715922]
-transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 2.1898558, 3.3765957, 1.3075416)
+transform = Transform3D(-4.3711395e-08, 1.0000001, 4.3711395e-08, 0, -4.3711395e-08, 1.0000001, 1.0000001, 4.3711395e-08, 1.9106859e-15, 2.2741077, 3.3765957, 1.3075417)
 material_override = ExtResource("8_7r4gi")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_jq8tk")
 skeleton = NodePath("../..")
 
