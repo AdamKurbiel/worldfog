@@ -88,7 +88,7 @@ load_path = "res://.godot/imported/71_chrome mesh steel perforate metal texture-
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_740o0"]
 cull_mode = 2
 albedo_texture = SubResource("CompressedTexture2D_7jg8g")
-uv1_scale = Vector3(2.84, 2.87, 6.535)
+uv1_scale = Vector3(3.625, 2.87, 6.535)
 proximity_fade_enabled = true
 proximity_fade_distance = 0.01
 
