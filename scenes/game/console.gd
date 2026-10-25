@@ -92,10 +92,12 @@ func skip():
 #TODO move it to globalfunctions, it will collide with iugame settings
 var music_enabled := true
 func music(vol = null):
+	
+	
 	if vol == null:
 		music_enabled = !music_enabled
 		vol = 100.0 if music_enabled else 0.0
-	
+	vol = float(vol)
 	output.tell("set MUSIC bus to "+str(vol))
 	vol = clamp(vol, 0.0, 100.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("MUSIC"), linear_to_db(vol / 100.0))
