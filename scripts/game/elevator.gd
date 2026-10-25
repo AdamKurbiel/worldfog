@@ -11,6 +11,7 @@ var elevatorSpeed : float = 1.25
 var elevatorMoveTextureAlpha : float = 1.0
 var working : bool = false
 var walls_moving_material : ShaderMaterial
+var elevatorshaft_y : float = -3.0
 
 func _ready() -> void:
 	walls_moving_material = outerWall.material_override as ShaderMaterial
@@ -33,11 +34,14 @@ func _process(_delta: float) -> void:
 	if (!working):
 		elevatorSpeed = lerpf(elevatorSpeed, 0,0.01)
 		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,0,0.01)
+		elevatorshaft_y = lerpf(elevatorshaft_y, 0.0,0.005)
 	else:
 		elevatorSpeed = lerpf(elevatorSpeed, 1.25,0.005)
 		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,1.0,0.0001)
+		elevatorshaft_y = lerpf(elevatorshaft_y, -3.0,1)
 	walls_moving_material.set_shader_parameter("speed", elevatorSpeed)
 	walls_moving_material.set_shader_parameter("alpha", elevatorMoveTextureAlpha)
+	$wf_elevator_shaft.position.y = elevatorshaft_y
 	
 
 func _on_animation_animation_finished(anim_name: StringName) -> void:

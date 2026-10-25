@@ -211,7 +211,7 @@ visible = false
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6, 0.22412497)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6785555, 0.22412497)
 
 [node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0, 0, 0)
@@ -396,7 +396,7 @@ transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.000000
 shape = SubResource("BoxShape3D_h83rl")
 
 [node name="wf_elevator_shaft" parent="elevator" unique_id=2094951542 instance=ExtResource("15_740o0")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.01416871, -0.05139641, -0.7112785)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.014, -3, -0.711)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=2009661318]
 transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)
