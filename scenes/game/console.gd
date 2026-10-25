@@ -92,8 +92,6 @@ func skip():
 #TODO move it to globalfunctions, it will collide with iugame settings
 var music_enabled := true
 func music(vol = null):
-	
-	
 	if vol == null:
 		music_enabled = !music_enabled
 		vol = 100.0 if music_enabled else 0.0
@@ -106,3 +104,12 @@ func sun():
 	var sun = 	$"../../../sun"
 	sun.visible = !sun.visible
 	output.tell("Toggled sun ("+str(sun.visible)+")")
+	
+func tp(x,y,z):
+	var plr = get_parent().get_parent()
+	if str(x) == 'x': x = str(plr.position.x)
+	if str(y) == 'y': x = str(plr.position.y)
+	if str(z) == 'z': x = str(plr.position.z)
+	
+	plr.position = Vector3(float(x),float(y),float(z))
+	output.tell("Teleported Player to "+str(x)+","+str(y)+","+str(z))

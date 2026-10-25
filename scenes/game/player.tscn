@@ -345,7 +345,7 @@ color = Color(0, 0, 0, 1)
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
 
-[node name="PlayerAnimation" type="Node" parent="."]
+[node name="PlayerAnimation" type="Node" parent="." unique_id=2110322757]
 script = ExtResource("13_player_animation")
 
 [node name="dev" type="CanvasLayer" parent="." unique_id=1637408639]
