@@ -203,14 +203,13 @@ _data = {
 &"open": SubResource("Animation_o8fc1")
 }
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jg8g"]
-points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_740o0"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iby7u"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_740o0"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jg8g"]
 points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_740o0"]
@@ -234,12 +233,36 @@ uv1_scale = Vector3(0.29, 5.01, 0.455)
 material = SubResource("StandardMaterial3D_uyk6l")
 size = Vector3(0.079589844, 45.559692, 2.1513596)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iby7u"]
+albedo_texture = ExtResource("7_i7141")
+uv1_scale = Vector3(1.555, 0.755, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_iby7u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6l526"]
+albedo_texture = ExtResource("7_i7141")
+uv1_scale = Vector3(4.115, 0.94, 5.09)
+uv2_scale = Vector3(3.11, 3.11, 3.11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iby7u"]
+lightmap_size_hint = Vector2i(20, 19)
+material = SubResource("StandardMaterial3D_6l526")
+add_uv2 = true
+size = Vector3(2.006775, 0.3808899, 1.3106079)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fhyq"]
+size = Vector3(1.8867035, 15.388184, 7.3675537)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h83rl"]
+size = Vector3(1.72686, 15.4296875, 9.150261)
+
 [node name="World" type="Node3D" unique_id=1923274931]
 script = ExtResource("1_e3hyu")
 
 [node name="sun" type="DirectionalLight3D" parent="." unique_id=1099560116]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
@@ -389,46 +412,70 @@ libraries/ = SubResource("AnimationLibrary_xo05s")
 
 [node name="entrance" type="Node3D" parent="elevator" unique_id=804331359]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="elevator/entrance" unique_id=1452614580]
+[node name="grid" type="StaticBody3D" parent="elevator/entrance" unique_id=1452614580]
 transform = Transform3D(2.5000007, 0, 0, 0, 1.0000001, 0, 0, 0, 1.71, -0.48812786, -0.73414123, 5.688077)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="elevator/entrance/StaticBody3D" unique_id=1159550129]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.55, 4.4703484e-08, 0, -0.44097733)
-mesh = SubResource("PlaneMesh_jq8tk")
-skeleton = NodePath("../..")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="elevator/entrance/grid" unique_id=542390588]
+transform = Transform3D(3.279999, 0, 0, 0, 1.0320001, 0, 0, 0, 4.7953215, 0.1952511, -0.015027165, -3.326361)
+shape = SubResource("ConcavePolygonShape3D_iby7u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/StaticBody3D" unique_id=1732362727]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.55, 4.4703484e-08, 0, -0.44097733)
-shape = SubResource("ConvexPolygonShape3D_7jg8g")
+[node name="metal" type="StaticBody3D" parent="elevator/entrance" unique_id=212678188]
+transform = Transform3D(2.5000007, 0, 0, 0, 1.0000001, 0, 0, 0, 1.71, -0.48812786, -0.73414123, 5.688077)
+metadata/material = "metal"
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="elevator/entrance/StaticBody3D" unique_id=515811873]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.41999987, 0, -0.49999988, 0.72746134, 0.0003017038, 0.4307455, 0.8055308)
-mesh = SubResource("PlaneMesh_740o0")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="elevator/entrance/StaticBody3D" unique_id=1076392578]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="elevator/entrance/metal" unique_id=961473570]
 transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.41999987, 0, -0.49999988, 0.72746134, 0.0003017038, 0.4307455, 0.8055308)
 shape = SubResource("ConvexPolygonShape3D_740o0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="elevator/entrance" unique_id=611393124]
-transform = Transform3D(8.2, 0, 0, 0, 1.0320002, 0, 0, 0, 8.2, 0, -0.7491684, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/metal" unique_id=1732362727]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.55, 4.4703484e-08, 0, -0.44097733)
+shape = SubResource("ConvexPolygonShape3D_7jg8g")
+
+[node name="grid_mesh" type="MeshInstance3D" parent="elevator/entrance" unique_id=611393124]
+transform = Transform3D(8.2, 0, 0, 0, 1.0320002, 0, 0, 0, 8.2, 0, -0.74916863, 0)
 mesh = SubResource("PlaneMesh_dwbtc")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="elevator/entrance" unique_id=881293974]
+[node name="wall1" type="MeshInstance3D" parent="elevator/entrance" unique_id=881293974]
 transform = Transform3D(-3.5843343e-07, 0, -8.2, 0, 1.0320002, 0, 8.2, 0, -3.5843343e-07, 0.020876873, -23.190716, -8.552274)
 mesh = SubResource("BoxMesh_ykw3p")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="elevator/entrance" unique_id=1880780648]
+[node name="wall2" type="MeshInstance3D" parent="elevator/entrance" unique_id=1880780648]
 transform = Transform3D(-3.5843343e-07, 0, -8.2, 0, 1.0320002, 0, 8.2, 0, -3.5843343e-07, 0.023657052, -23.190716, 8.498631)
 mesh = SubResource("BoxMesh_ykw3p")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="elevator/entrance" unique_id=717451464]
+[node name="wall3" type="MeshInstance3D" parent="elevator/entrance" unique_id=717451464]
 transform = Transform3D(8.2, 0, 0, 0, 1.0320002, 0, 0, 0, 8.2, 8.54396, -23.190716, 0.041519668)
 mesh = SubResource("BoxMesh_ykw3p")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="elevator/entrance" unique_id=1012004452]
+[node name="wall4" type="MeshInstance3D" parent="elevator/entrance" unique_id=1012004452]
 transform = Transform3D(8.2, 0, 0, 0, 1.0320002, 0, 0, 0, 8.2, -8.481223, -23.190716, 0.0072573572)
 mesh = SubResource("BoxMesh_ykw3p")
+
+[node name="stairs1" type="MeshInstance3D" parent="elevator/entrance" unique_id=1159550129]
+transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.48812786, -0.73414123, 4.9340067)
+mesh = SubResource("PlaneMesh_jq8tk")
+
+[node name="stairs2" type="MeshInstance3D" parent="elevator/entrance" unique_id=1274368633]
+transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.5175016, -0.6205242, 6.510331)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="stairs3" type="MeshInstance3D" parent="elevator/entrance" unique_id=784470515]
+transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.5175016, -0.23438948, 7.742521)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="shaft" type="StaticBody3D" parent="elevator/entrance" unique_id=1108444320]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=301559788]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 2.9747162, 7.194093, 1.6383525)
+shape = SubResource("BoxShape3D_6fhyq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=1511066854]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -3.9331625, 7.1501694, 1.6317762)
+shape = SubResource("BoxShape3D_6fhyq")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=852409973]
+transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, -0.2902749, 7.214846, -2.9242046)
+shape = SubResource("BoxShape3D_h83rl")
 
 [node name="map" type="Node3D" parent="." unique_id=1388050487]
 script = ExtResource("13_st3ua")
