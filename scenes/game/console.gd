@@ -3,6 +3,8 @@
 ##syntax: command(a,b,..n)
 extends Control
 
+@onready var output = $"../output"
+
 func execute_command(source: String) -> void:
 	var command := source.strip_edges()
 	if command.is_empty():
@@ -13,7 +15,7 @@ func execute_command(source: String) -> void:
 	var arguments: Array = []
 	if open_paren >= 0:
 		if not command.ends_with(")"):
-			printerr("[console]: expected ')' in command: ", command)
+			output.err("[console]: expected ')' in command: "+command)
 			return
 		method_name = command.left(open_paren).strip_edges()
 		var argument_text := command.substr(open_paren + 1, command.length() - open_paren - 2)
@@ -23,7 +25,7 @@ func execute_command(source: String) -> void:
 		arguments = parsed
 
 	if method_name.is_empty() or not has_method(method_name):
-		printerr("[console]: no command named '", method_name, "'")
+		output.err("[console]: no command named '"+method_name+"'")
 		return
 
 	callv(method_name, arguments)
@@ -54,13 +56,13 @@ func _parse_arguments(source: String) -> Variant:
 		else:
 			current += character
 	if not quote.is_empty():
-		printerr("[console]: unterminated quoted argument")
+		output.err("[console]: unterminated quoted argument")
 		return null
 	values.append(current.strip_edges())
 	var result: Array = []
 	for value in values:
 		if value.is_empty():
-			printerr("[console]: empty argument")
+			output.err("[console]: empty argument")
 			return null
 		var lower := value.to_lower()
 		if lower == "true":
@@ -78,13 +80,14 @@ func _parse_arguments(source: String) -> Variant:
 	return result
 
 func hello() -> void:
-	print("Hello, World!");
+	output.tell("Hello, World!");
 
 func say(content: Variant) -> void:
-	print(content)
+	output.tell(content)
 
 func skip():
-	get_parent().get_parent().call("skipStage")
+	get_parent().get_parent().get_parent().call("skipStage")
+	output.tell("ran skipStage()")
 
 #TODO move it to globalfunctions, it will collide with iugame settings
 var music_enabled := true
@@ -92,10 +95,12 @@ func music(vol = null):
 	if vol == null:
 		music_enabled = !music_enabled
 		vol = 100.0 if music_enabled else 0.0
-		
+	
+	output.tell("set MUSIC bus to "+str(vol))
 	vol = clamp(vol, 0.0, 100.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("MUSIC"), linear_to_db(vol / 100.0))
 
 func sun():
-	var sun = 	$"../../sun"
+	var sun = 	$"../../../sun"
 	sun.visible = !sun.visible
+	output.tell("Toggled sun ("+str(sun.visible)+")")
