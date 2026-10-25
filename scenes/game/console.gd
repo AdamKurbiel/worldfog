@@ -95,3 +95,7 @@ func music(vol = null):
 		
 	vol = clamp(vol, 0.0, 100.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("MUSIC"), linear_to_db(vol / 100.0))
+
+func sun():
+	var sun = 	$"../../sun"
+	sun.visible = !sun.visible
