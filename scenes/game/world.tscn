@@ -395,7 +395,7 @@ transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.000000
 shape = SubResource("BoxShape3D_h83rl")
 
 [node name="wf_elevator_shaft" parent="elevator" unique_id=2094951542 instance=ExtResource("15_740o0")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.014168709, -0.051396403, -0.7112785)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.01416871, -0.05139641, -0.7112785)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=2009661318]
 transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)

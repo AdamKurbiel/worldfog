@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 	
 	fps.text = str(int(Engine.get_frames_per_second())) + " FPS"
 	
-	var player_pos = get_parent().position
+	var player_pos = get_parent().get_parent().position
 	x_pos_label.text = 'X:' + str(roundf(player_pos.x * 100)/100)
 	y_pos_label.text = 'Y:' + str(roundf(player_pos.y * 100)/100)
 	z_pos_label.text = 'Z:' + str(roundf(player_pos.z * 100)/100)
