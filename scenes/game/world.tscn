@@ -241,6 +241,13 @@ uv1_scale = Vector3(1.555, 0.755, 1)
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_iby7u")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa3vm"]
+albedo_texture = ExtResource("7_i7141")
+uv1_scale = Vector3(1.31, 0.37, 1.13)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iby7u"]
+material = SubResource("StandardMaterial3D_fa3vm")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6l526"]
 albedo_texture = ExtResource("7_i7141")
 uv1_scale = Vector3(4.115, 0.94, 5.09)
@@ -266,7 +273,7 @@ transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-0
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6, 0.25)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6, 0.22412497)
 
 [node name="Control" type="Control" parent="." unique_id=670842810]
 layout_mode = 3
@@ -455,8 +462,28 @@ mesh = SubResource("BoxMesh_ykw3p")
 transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.48812786, -0.73414123, 4.9340067)
 mesh = SubResource("PlaneMesh_jq8tk")
 
+[node name="stairs8" type="MeshInstance3D" parent="elevator/entrance" unique_id=204821116]
+transform = Transform3D(2.135, 0, 0, 0, -1, 8.244371e-08, 0, -1.509958e-07, -0.546, -0.488, 6.316, 4.74)
+mesh = SubResource("PlaneMesh_iby7u")
+
 [node name="stairs2" type="MeshInstance3D" parent="elevator/entrance" unique_id=1274368633]
 transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.5175016, -0.6205242, 6.510331)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="stairs4" type="MeshInstance3D" parent="elevator/entrance" unique_id=1370383441]
+transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, 1.7718751, 5.483352, 4.6643043)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="stairs5" type="MeshInstance3D" parent="elevator/entrance" unique_id=974378106]
+transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, 1.7718751, 0.49010503, 4.6643043)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="stairs6" type="MeshInstance3D" parent="elevator/entrance" unique_id=509157525]
+transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, -2.8177223, 5.483352, 4.6643043)
+mesh = SubResource("BoxMesh_iby7u")
+
+[node name="stairs7" type="MeshInstance3D" parent="elevator/entrance" unique_id=47685434]
+transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, -2.8177223, 0.49010506, 4.6643043)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs3" type="MeshInstance3D" parent="elevator/entrance" unique_id=784470515]
@@ -464,6 +491,7 @@ transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.51
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="shaft" type="StaticBody3D" parent="elevator/entrance" unique_id=1108444320]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.18250318, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=301559788]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 2.9747162, 7.194093, 1.6383525)
@@ -486,7 +514,7 @@ bus = &"MUSIC"
 parameters/looping = true
 
 [node name="wf_elevator_shaft" parent="." unique_id=2094951542 instance=ExtResource("15_740o0")]
-transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.073307276, -0.015675902, -0.21693993)
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -0.004321456, -0.015675902, -0.21693993)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=2009661318]
 transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)
