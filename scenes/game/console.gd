@@ -108,8 +108,8 @@ func sun():
 func tp(x,y,z):
 	var plr = get_parent().get_parent()
 	if str(x) == 'x': x = str(plr.position.x)
-	if str(y) == 'y': x = str(plr.position.y)
-	if str(z) == 'z': x = str(plr.position.z)
+	if str(y) == 'y': y = str(plr.position.y)
+	if str(z) == 'z': z = str(plr.position.z)
 	
 	plr.position = Vector3(float(x),float(y),float(z))
 	output.tell("Teleported Player to "+str(x)+","+str(y)+","+str(z))

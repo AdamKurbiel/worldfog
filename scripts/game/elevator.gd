@@ -37,8 +37,8 @@ func _process(_delta: float) -> void:
 		elevatorshaft_y = lerpf(elevatorshaft_y, 0.0,0.005)
 	else:
 		elevatorSpeed = lerpf(elevatorSpeed, 1.25,0.005)
-		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,1.0,0.0001)
-		elevatorshaft_y = lerpf(elevatorshaft_y, -3.0,1)
+		elevatorMoveTextureAlpha = lerpf(elevatorMoveTextureAlpha,1.0,0.0000001)
+		elevatorshaft_y = lerpf(elevatorshaft_y, -3.0,0.01)
 	walls_moving_material.set_shader_parameter("speed", elevatorSpeed)
 	walls_moving_material.set_shader_parameter("alpha", elevatorMoveTextureAlpha)
 	$wf_elevator_shaft.position.y = elevatorshaft_y
