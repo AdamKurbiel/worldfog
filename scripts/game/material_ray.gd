@@ -1,13 +1,14 @@
-
+##Created by Adam Kurbiel
+#Footsteps system
 extends RayCast3D
 
-const FOOTSTEP_SOUNDS = {
+var FOOTSTEP_SOUNDS = {
 	"default": {
-		"stream": preload("res://audio/sfx/footsteps_default.mp3"),
-		"interval": 0.38
+		"stream": AudioStreamMP3.new().load_from_file("res://audio/sfx/footsteps_default.mp3"),
+		"interval": 0.40
 	},
 	"metal": {
-		"stream": preload("res://audio/sfx/footsteps_metal.mp3"),
+		"stream": AudioStreamMP3.new().load_from_file("res://audio/sfx/footsteps_metal.mp3"),
 		"interval": 0.40
 	}
 }
