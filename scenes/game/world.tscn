@@ -488,4 +488,35 @@ parameters/looping = true
 [node name="wf_elevator_shaft" parent="." unique_id=2094951542 instance=ExtResource("15_740o0")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.073307276, -0.015675902, -0.21693993)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=2009661318]
+transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=1535526342]
+transform = Transform3D(-3.1669703, -0.82796806, -0.18592794, 0, -0.7183703, 3.1990223, -0.8485873, 3.0900183, 0.69389236, 4.50915, 17.778572, 2.2861974)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=1194267548]
+transform = Transform3D(-3.9085015e-07, 3.1990225, 0.71837014, -1.9340787e-08, -0.7183702, 3.1990223, 3.2786887, 3.7711555e-07, 1.0450725e-07, -5.688227, 17.778578, 2.2861981)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=275238638]
+transform = Transform3D(0.84858716, -3.090018, -0.6938924, 2.0729399e-08, -0.7183704, 3.1990218, -3.1669705, -0.82796836, -0.1859281, -0.62159216, 17.778568, -4.2350817)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="wf_elevator_shaft2" parent="." unique_id=1382384671 instance=ExtResource("15_740o0")]
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.073, -14.656, -0.217)
+
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]
