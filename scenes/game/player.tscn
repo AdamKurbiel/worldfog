@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="4_68xwl"]
 [ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
 [ext_resource type="Script" uid="uid://pebvxohegd52" path="res://scripts/game/material_ray.gd" id="5_t8yk2"]
+[ext_resource type="PackedScene" uid="uid://00yuifujd5i6" path="res://models/player.fbx" id="8_m5ugi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
 
@@ -235,6 +236,9 @@ libraries/ = SubResource("AnimationLibrary_68xwl")
 
 [node name="AreaEnter" type="AudioStreamPlayer" parent="PlayerGUI/CanvasLayer" unique_id=857700126]
 stream = ExtResource("4_nybob")
+
+[node name="player" parent="." unique_id=1108759098 instance=ExtResource("8_m5ugi")]
+transform = Transform3D(-0.865, 0, -1.3061137e-07, 0, 0.865, 0, 1.3061137e-07, 0, -0.865, 0, -0.55184704, 0.034)
 
 [connection signal="focus_exited" from="console/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_changed" from="console/LineEdit" to="." method="_on_line_edit_text_changed"]
