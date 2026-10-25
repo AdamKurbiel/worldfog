@@ -238,7 +238,7 @@ libraries/ = SubResource("AnimationLibrary_68xwl")
 stream = ExtResource("4_nybob")
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
-transform = Transform3D(-0.91, 0, -7.955473e-08, 0, 0.91, 0, 7.955473e-08, 0, -0.91, 0.015, -0.454364, 0.07452929)
+transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
 
 [connection signal="focus_exited" from="console/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_changed" from="console/LineEdit" to="." method="_on_line_edit_text_changed"]

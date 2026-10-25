@@ -172,10 +172,16 @@ func update_camera_movement(delta: float) -> void:
 	if moving && is_on_floor():
 		bob_time += delta * target_bob_speed
 		model.get_node("AnimationPlayer").speed_scale = 1.5
-		model.get_node("AnimationPlayer").play("ArmLowAction")
+		model.get_node("AnimationPlayer").play(
+			"ArmLowAction",
+			-1.0,
+			-1.0 if input_dir.y > 0.0 else 1.0,
+			input_dir.y > 0.0
+		)
 	else:
 		bob_time = lerp(bob_time, 0.0, delta * 5.0)
 		if (is_on_floor()):
+			model.get_node("AnimationPlayer").speed_scale = 1.0
 			model.get_node("AnimationPlayer").play("HumanLowAction")
 		else:
 			model.get_node("AnimationPlayer").speed_scale = 0.0
