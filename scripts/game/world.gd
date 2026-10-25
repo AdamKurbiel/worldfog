@@ -26,14 +26,14 @@ func prepareStage() -> void:
 	elevator.ride()
 	player.start_shake(warmup * 2.0, 0.01)
 
-	await get_tree().create_timer(warmup).timeout
+	await get_tree().create_timer(warmup, false).timeout
 	if stage_skipped:
 		return
 
 	player.stop_shake()
 	elevator.stop()
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 	if stage_skipped:
 		return
 
@@ -58,12 +58,12 @@ func openElevator() -> void:
 
 	elevator.open()
 
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 
 	player.areaNotify(stage_name)
 	player.toggleFlashlight()
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 
 	$TheMoonIsWatching.play()
 
@@ -72,7 +72,6 @@ func openElevator() -> void:
 	music_display.Show("THE MOON IS WATCHING", "Aswrek")
 
 	stage_running = false
-
 
 func _ready() -> void:
 	prepareStage()

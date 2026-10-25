@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="4_68xwl"]
 [ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
 [ext_resource type="Script" uid="uid://pebvxohegd52" path="res://scripts/game/material_ray.gd" id="5_t8yk2"]
+[ext_resource type="Texture2D" uid="uid://bpv52q2enobbw" path="res://ui/crosshair.png" id="8_3vq1g"]
 [ext_resource type="PackedScene" uid="uid://dcgsyfvqhvyne" path="res://models/player_animated.glb" id="8_m5ugi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqkch"]
@@ -114,6 +115,67 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_u3rb4"),
 &"show": SubResource("Animation_nybob")
+}
+
+[sub_resource type="Animation" id="Animation_qfnet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_71j4m"]
+resource_name = "fadein"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.8025019, 7.7274847),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.5666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnwh7"]
+_data = {
+&"RESET": SubResource("Animation_qfnet"),
+&"fadein": SubResource("Animation_71j4m")
 }
 
 [node name="player" type="CharacterBody3D" unique_id=1767344172]
@@ -236,6 +298,53 @@ libraries/ = SubResource("AnimationLibrary_68xwl")
 
 [node name="AreaEnter" type="AudioStreamPlayer" parent="PlayerGUI/CanvasLayer" unique_id=857700126]
 stream = ExtResource("4_nybob")
+
+[node name="gameUI" type="Control" parent="PlayerGUI" unique_id=2035491246]
+anchors_preset = 0
+offset_right = 1086.0
+offset_bottom = 768.0
+
+[node name="TextureRect" type="TextureRect" parent="PlayerGUI/gameUI" unique_id=103495724]
+modulate = Color(0.73300546, 0.7330054, 0.7330054, 0.45882353)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("8_3vq1g")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerGUI/gameUI" unique_id=1576158821]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 714.0
+offset_right = 485.0
+offset_bottom = 754.0
+theme_override_fonts/normal_font = ExtResource("3_68xwl")
+theme_override_font_sizes/normal_font_size = 31
+text = "SCORE: 0000000"
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerGUI/gameUI" unique_id=335084759]
+libraries/ = SubResource("AnimationLibrary_bnwh7")
+autoplay = &"fadein"
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGUI/gameUI" unique_id=270384146]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -18.0
+offset_right = 1098.0
+offset_bottom = 782.0
+color = Color(0, 0, 0, 1)
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)

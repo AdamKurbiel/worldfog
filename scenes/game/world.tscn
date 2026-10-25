@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://brcce5l5gkpdj" path="res://scenes/game/player.tscn" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://dkxr1ehqlaoe" path="res://scripts/game/world.gd" id="1_e3hyu"]
-[ext_resource type="Texture2D" uid="uid://bpv52q2enobbw" path="res://ui/crosshair.png" id="3_4wyf3"]
-[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://hk2gybx5f3rg" path="res://scripts/game/elevator.gd" id="5_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://by6ckh6alpbwm" path="res://models/elevator.fbx" id="5_71j4m"]
 [ext_resource type="Material" uid="uid://dncma7kcykfkx" path="res://models/materials/grid_material.tres" id="6_qfnet"]
@@ -16,67 +14,6 @@
 [ext_resource type="Script" uid="uid://bqnqo45lr5eh1" path="res://scripts/game/map.gd" id="13_st3ua"]
 [ext_resource type="AudioStream" uid="uid://cg7cixyc05mpi" path="res://audio/music/THE_MOON_IS_WATCHING.mp3" id="14_7jg8g"]
 [ext_resource type="PackedScene" uid="uid://lopqr64r5u2f" path="res://models/wf_elevator_shaft.fbx" id="15_740o0"]
-
-[sub_resource type="Animation" id="Animation_qfnet"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_71j4m"]
-resource_name = "fadein"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1.8025019, 7.7274847),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.5666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7141"]
-_data = {
-&"RESET": SubResource("Animation_qfnet"),
-&"fadein": SubResource("Animation_71j4m")
-}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xd07"]
 size = Vector3(5.039383, 6.9348755, 0.60565186)
@@ -275,54 +212,6 @@ shadow_enabled = true
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6, 0.22412497)
 
-[node name="Control" type="Control" parent="." unique_id=670842810]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1086.0
-offset_bottom = 768.0
-
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=223370571]
-modulate = Color(0.73300546, 0.7330054, 0.7330054, 0.45882353)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("3_4wyf3")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=1557976906]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 19.0
-offset_top = 714.0
-offset_right = 485.0
-offset_bottom = 754.0
-theme_override_fonts/normal_font = ExtResource("4_k0juu")
-theme_override_font_sizes/normal_font_size = 31
-text = "SCORE: 0000000"
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=1079008103]
-libraries/ = SubResource("AnimationLibrary_i7141")
-autoplay = &"fadein"
-
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1826111354]
-layout_mode = 0
-offset_left = -25.0
-offset_top = -18.0
-offset_right = 1098.0
-offset_bottom = 782.0
-color = Color(0, 0, 0, 1)
-
 [node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0, 0, 0)
 script = ExtResource("5_4mrxx")
@@ -505,6 +394,40 @@ shape = SubResource("BoxShape3D_6fhyq")
 transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, -0.2902749, 7.214846, -2.9242046)
 shape = SubResource("BoxShape3D_h83rl")
 
+[node name="wf_elevator_shaft" parent="elevator" unique_id=2094951542 instance=ExtResource("15_740o0")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.014168709, -0.051396403, -0.7112785)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=2009661318]
+transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=1535526342]
+transform = Transform3D(-3.1669703, -0.82796806, -0.18592794, 0, -0.7183703, 3.1990223, -0.8485873, 3.0900183, 0.69389236, 4.50915, 17.778572, 2.2861974)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=1194267548]
+transform = Transform3D(-3.9085015e-07, 3.1990225, 0.71837014, -1.9340787e-08, -0.7183702, 3.1990223, 3.2786887, 3.7711555e-07, 1.0450725e-07, -5.688227, 17.778578, 2.2861981)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="elevator/wf_elevator_shaft" unique_id=275238638]
+transform = Transform3D(0.84858716, -3.090018, -0.6938924, 2.0729399e-08, -0.7183704, 3.1990218, -3.1669705, -0.82796836, -0.1859281, -0.62159216, 17.778568, -4.2350817)
+light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
+spot_range = 6.4714007
+spot_attenuation = -1.15
+spot_angle = 31.251772
+
+[node name="wf_elevator_shaft2" parent="elevator" unique_id=1382384671 instance=ExtResource("15_740o0")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.028399026, -48.05246, -0.73378724)
+
 [node name="map" type="Node3D" parent="." unique_id=1388050487]
 script = ExtResource("13_st3ua")
 
@@ -512,39 +435,5 @@ script = ExtResource("13_st3ua")
 stream = ExtResource("14_7jg8g")
 bus = &"MUSIC"
 parameters/looping = true
-
-[node name="wf_elevator_shaft" parent="." unique_id=2094951542 instance=ExtResource("15_740o0")]
-transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -0.004321456, -0.015675902, -0.21693993)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=2009661318]
-transform = Transform3D(3.2786887, 0, 0, 0, -0.7183704, 3.1990225, 0, -3.1990225, -0.7183704, -0.62159216, 17.77856, 6.775324)
-light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
-spot_range = 6.4714007
-spot_attenuation = -1.15
-spot_angle = 31.251772
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=1535526342]
-transform = Transform3D(-3.1669703, -0.82796806, -0.18592794, 0, -0.7183703, 3.1990223, -0.8485873, 3.0900183, 0.69389236, 4.50915, 17.778572, 2.2861974)
-light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
-spot_range = 6.4714007
-spot_attenuation = -1.15
-spot_angle = 31.251772
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=1194267548]
-transform = Transform3D(-3.9085015e-07, 3.1990225, 0.71837014, -1.9340787e-08, -0.7183702, 3.1990223, 3.2786887, 3.7711555e-07, 1.0450725e-07, -5.688227, 17.778578, 2.2861981)
-light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
-spot_range = 6.4714007
-spot_attenuation = -1.15
-spot_angle = 31.251772
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="wf_elevator_shaft" unique_id=275238638]
-transform = Transform3D(0.84858716, -3.090018, -0.6938924, 2.0729399e-08, -0.7183704, 3.1990218, -3.1669705, -0.82796836, -0.1859281, -0.62159216, 17.778568, -4.2350817)
-light_color = Color(0.99999994, 0.83503026, 0.5397708, 1)
-spot_range = 6.4714007
-spot_attenuation = -1.15
-spot_angle = 31.251772
-
-[node name="wf_elevator_shaft2" parent="." unique_id=1382384671 instance=ExtResource("15_740o0")]
-transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.073, -14.656, -0.217)
 
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]

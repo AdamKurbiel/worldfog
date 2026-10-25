@@ -10,10 +10,12 @@ extends CharacterBody3D
 @onready var debug: Control = $debug
 @onready var console: Control = $console
 @onready var console_line: LineEdit = $console/LineEdit
+@onready var pauseUI = preload("res://scenes/game/pause.tscn")
 @onready var areaNotifyAnimation : AnimationPlayer = $PlayerGUI/CanvasLayer/animation
 @onready var areaEnterSfx : AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
 @onready var areaNameLabel : Label = $PlayerGUI/CanvasLayer/area_name
 @onready var model : Node3D = $model
+
 
 func toggleFlashlight():
 	$flashlight.visible = true
@@ -80,6 +82,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fastquit"):
 		get_tree().quit()
+	if event.is_action_pressed("pause") and !get_tree().paused:
+		get_viewport().set_input_as_handled()
+
+		var pause = pauseUI.instantiate()
+		get_tree().root.add_child(pause)
+		get_tree().paused = true
 
 	if event is InputEventMouseMotion and !console.visible:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))

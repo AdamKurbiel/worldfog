@@ -43,5 +43,5 @@ func _process(_delta: float) -> void:
 func _on_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "open":
 		rollSound.stop()
-		gate.visible = false
+
 		

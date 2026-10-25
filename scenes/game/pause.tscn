@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://pnscs2klgtd2"]
+
+[ext_resource type="AudioStream" uid="uid://dakxojtgljg55" path="res://audio/sfx/select.wav" id="1_55c26"]
+[ext_resource type="Script" uid="uid://bq6tdx1ad5hkv" path="res://scripts/game/pause.gd" id="1_nuy32"]
+[ext_resource type="FontFile" uid="uid://5by05k6nia62" path="res://fonts/SuboleyaRegular.ttf" id="2_yoy87"]
+[ext_resource type="Shader" uid="uid://d31ych3c07vgp" path="res://shaders/2D/shadow_moving.gdshader" id="3_0dt3s"]
+[ext_resource type="Shader" uid="uid://qeui2evgwyw1" path="res://shaders/2D/blur.gdshader" id="5_4q6ax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jg8g"]
+shader = ExtResource("3_0dt3s")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.7)
+shader_parameter/shadow_distance = -0.535
+shader_parameter/speed = 1.0
+shader_parameter/softness = 62.385
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xd07"]
+shader = ExtResource("5_4q6ax")
+shader_parameter/blur_radius = 10
+shader_parameter/blur_strength = 4.844000226830119
+
+[node name="pause" type="Control" unique_id=2024752854]
+process_mode = 3
+process_priority = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nuy32")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1166968765]
+layer = 11
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1946725072]
+offset_right = 1089.0
+offset_bottom = 774.0
+color = Color(0, 0, 0, 0.41960785)
+
+[node name="Select" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=403587646]
+stream = ExtResource("1_55c26")
+autoplay = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1758851098]
+material = SubResource("ShaderMaterial_7jg8g")
+offset_left = 369.0
+offset_top = 208.0
+offset_right = 734.0
+offset_bottom = 341.0
+theme_override_fonts/normal_font = ExtResource("2_yoy87")
+theme_override_font_sizes/normal_font_size = 115
+text = "PAUSED"
+
+[node name="cooldown" type="Timer" parent="CanvasLayer" unique_id=1862961346]
+process_mode = 3
+wait_time = 0.2
+one_shot = true
+ignore_time_scale = true
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1766432356]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 463.5
+offset_top = 342.0
+offset_right = 622.5
+offset_bottom = 342.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1740210260]
+material = SubResource("ShaderMaterial_7jg8g")
+layout_mode = 0
+offset_left = -461.5
+offset_right = 622.5
+offset_bottom = 401.0
+theme_override_fonts/normal_font = ExtResource("2_yoy87")
+theme_override_font_sizes/normal_font_size = 35
+text = "ESC: return to the game
+CTRL+S: Settings
+CTRL+M: Main menu
+CTRL+Q: Quit to the desktop
+
+
+
+Warning: If You quit, Your run progress will be lost.
+"
+horizontal_alignment = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=476425774]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=609040421]
+material = SubResource("ShaderMaterial_3xd07")
+offset_right = 1087.0
+offset_bottom = 776.0
+
+[connection signal="timeout" from="CanvasLayer/cooldown" to="." method="_on_cooldown_timeout"]
