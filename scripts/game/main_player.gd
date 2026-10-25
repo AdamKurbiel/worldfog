@@ -7,9 +7,9 @@ extends CharacterBody3D
 @onready var standing_collision_shape: CollisionShape3D = $standing_collision_shape
 @onready var materialRay: RayCast3D = $materialRay
 @onready var flashlight: Node3D = $flashlight
-@onready var debug: Control = $debug
-@onready var console: Control = $console
-@onready var console_line: LineEdit = $console/LineEdit
+@onready var debug: Control = $dev/debug
+@onready var console: Control = $dev/console
+@onready var console_line: LineEdit = $dev/console/LineEdit
 @onready var pauseUI = preload("res://scenes/game/pause.tscn")
 @onready var areaNotifyAnimation : AnimationPlayer = $PlayerGUI/CanvasLayer/animation
 @onready var areaEnterSfx : AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
