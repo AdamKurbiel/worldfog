@@ -1,9 +1,7 @@
 extends CharacterBody3D
 
-@onready var head: Node3D = $head
-@onready var standing_collision_shape: CollisionShape3D = $standing_collision_shape
-@onready var materialRay: RayCast3D = $materialRay
-@onready var flashlight: Node3D = $flashlight
+@onready var camera_controller = $head
+@onready var player_animation = $PlayerAnimation
 @onready var debug: Control = $dev/debug
 @onready var console: Control = $dev/console
 @onready var console_line: LineEdit = $dev/console/LineEdit
@@ -11,54 +9,18 @@ extends CharacterBody3D
 @onready var areaNotifyAnimation: AnimationPlayer = $PlayerGUI/CanvasLayer/animation
 @onready var areaEnterSfx: AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
 @onready var areaNameLabel: Label = $PlayerGUI/CanvasLayer/area_name
-@onready var model: Node3D = $model
 
 var jumping = false
-var jump_animation_finished := false
-var landing_animation := false
-var walking_backwards := false
-
-var flashlight_lerp_speed: float = 20.0
 var current_speed: float = 5.0
 
 var walking_speed: float = 5.0
 const sprinting_speed: float = 8.0
 
-const mouse_sens: float = 0.25
 const JUMP_VELOCITY: float = 2.5
 
 var lerp_speed: float = 10.0
 var direction: Vector3 = Vector3.ZERO
 
-var shake_timer: float = 0.0
-var shake_duration: float = 0.0
-var shake_strength: float = 0.0
-
-var shake_speed: float = 25.0
-var shake_time: float = 0.0
-
-var shake_seed: Vector3 = Vector3.ZERO
-
-var camera_base_position: Vector3 = Vector3(0, 1, 0)
-var camera_base_rotation: Vector3 = Vector3.ZERO
-var camera_pitch: float = 0.0
-
-var bob_time: float = 0.0
-var bob_speed: float = 8.0
-var bob_amount: float = 0.035
-var sprint_bob_multiplier: float = 1.5
-
-var camera_sway: Vector3 = Vector3.ZERO
-var camera_sway_amount: float = 0.025
-var camera_tilt_amount: float = 0.025
-
-var idle_time: float = 0.0
-var idle_amount: float = 0.008
-
-var landing_amount: float = 0.0
-var was_on_floor: bool = true
-
-var camera_effects_lerp: float = 10.0
 var input_dir: Vector2 = Vector2.ZERO
 
 
@@ -74,13 +36,6 @@ func areaNotify(area_name):
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	var jump_animation: Animation = model.get_node(
-		"AnimationPlayer"
-	).get_animation("jump")
-	jump_animation.loop_mode = Animation.LOOP_NONE
-	camera_base_position = head.position
-	camera_base_rotation = head.rotation
-	was_on_floor = is_on_floor()
 
 
 func _input(event: InputEvent) -> void:
@@ -93,201 +48,15 @@ func _input(event: InputEvent) -> void:
 		get_tree().root.add_child(pause)
 		get_tree().paused = true
 
-	if event is InputEventMouseMotion and !console.visible:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-		camera_pitch = clamp(
-			camera_pitch - deg_to_rad(event.relative.y * mouse_sens),
-			deg_to_rad(-89.0),
-			deg_to_rad(89.0)
-		)
-		head.rotation.x = camera_pitch
-
-
 func start_shake(
 	duration: float = 1.0,
 	strength: float = 0.1
 ) -> void:
-	shake_duration = duration
-	shake_timer = duration
-	shake_strength = strength
-	shake_time = 0.0
-
-	shake_seed = Vector3(
-		randf_range(0.0, 100.0),
-		randf_range(0.0, 100.0),
-		randf_range(0.0, 100.0)
-	)
+	camera_controller.start_shake(duration, strength)
 
 
 func stop_shake() -> void:
-	shake_timer = 0.0
-
-
-func update_camera_shake(delta: float) -> Vector3:
-	if shake_timer <= 0.0:
-		return Vector3.ZERO
-
-	shake_timer -= delta
-	shake_time += delta
-
-	var progress: float = clamp(
-		shake_timer / shake_duration,
-		0.0,
-		1.0
-	)
-
-	var fade: float = progress * progress
-	var strength: float = shake_strength * fade
-
-	var x: float = sin((shake_time * shake_speed) + shake_seed.x)
-	var y: float = sin((shake_time * shake_speed * 1.17) + shake_seed.y)
-	var z: float = sin((shake_time * shake_speed * 0.83) + shake_seed.z)
-
-	return Vector3(
-		x * strength,
-		y * strength,
-		z * strength * 0.5
-	)
-
-
-func update_camera_movement(delta: float) -> void:
-	var horizontal_velocity: Vector2 = Vector2(
-		velocity.x,
-		velocity.z
-	)
-
-	var movement_amount: float = clamp(
-		horizontal_velocity.length() / sprinting_speed,
-		0.0,
-		1.0
-	)
-
-	var moving: bool = movement_amount > 0.05 and is_on_floor() and !console.visible
-	var sprinting: bool = current_speed == sprinting_speed
-
-	var target_bob_speed: float = bob_speed
-	var target_bob_amount: float = bob_amount
-
-	if sprinting:
-		target_bob_speed *= sprint_bob_multiplier
-		target_bob_amount *= 1.5
-
-	var anim: AnimationPlayer = model.get_node("AnimationPlayer")
-
-	if landing_animation:
-		if anim.current_animation != "jump":
-			anim.speed_scale = -2.0
-			anim.play("jump", 0.1, 1.0, true)
-		elif anim.speed_scale >= 0.0:
-			anim.speed_scale = -2.0
-			anim.play("jump", 0.1)
-
-		if anim.current_animation_position <= delta:
-			anim.seek(0.0, true)
-			anim.pause()
-			anim.speed_scale = 1.0
-			landing_animation = false
-			jump_animation_finished = false
-	elif jumping or !is_on_floor():
-		bob_time = lerp(bob_time, 0.0, delta * 5.0)
-
-		if !jump_animation_finished:
-			if anim.current_animation != "jump":
-				anim.speed_scale = 1.0
-				anim.play("jump", 0.1)
-
-			if (
-				anim.current_animation_position + delta * anim.speed_scale
-				>= anim.current_animation_length
-			):
-				anim.seek(anim.current_animation_length, true)
-				anim.pause()
-				jump_animation_finished = true
-	elif moving:
-		bob_time += delta * target_bob_speed
-		var move_backwards: bool = input_dir.y > 0.0
-
-		if (
-			anim.current_animation != "ArmLowAction"
-			or walking_backwards != move_backwards
-		):
-			anim.speed_scale = 1.5
-			anim.play(
-				"ArmLowAction",
-				0.1,
-				-1.0 if move_backwards else 1.0,
-				move_backwards
-			)
-			walking_backwards = move_backwards
-	else:
-		bob_time = lerp(bob_time, 0.0, delta * 5.0)
-
-		if is_on_floor():
-			jump_animation_finished = false
-			anim.speed_scale = 1.0
-			anim.play("HumanLowAction", 0.1)
-
-	var bob_x: float = sin(bob_time * 0.5) * target_bob_amount
-	var bob_y: float = abs(cos(bob_time)) * target_bob_amount
-
-	bob_x *= movement_amount
-	bob_y *= movement_amount
-
-	idle_time += delta
-
-	var idle_y: float = 0.0
-	var idle_x: float = 0.0
-
-	if !moving:
-		idle_y = sin(idle_time * 1.2) * idle_amount
-		idle_x = sin(idle_time * 0.8) * idle_amount * 0.5
-
-	var target_tilt: float = 0.0
-
-	if moving:
-		target_tilt = -input_dir.x * camera_tilt_amount
-
-	var target_sway: Vector3 = Vector3(
-		-input_dir.x * camera_sway_amount,
-		0.0,
-		input_dir.y * camera_sway_amount
-	)
-
-	camera_sway = camera_sway.lerp(
-		target_sway,
-		delta * camera_effects_lerp
-	)
-
-	landing_amount = lerp(
-		landing_amount,
-		0.0,
-		delta * 7.0
-	)
-
-	var target_position: Vector3 = camera_base_position + Vector3(
-		bob_x + idle_x + camera_sway.x,
-		bob_y + idle_y - landing_amount,
-		camera_sway.z
-	)
-
-	var shake_offset: Vector3 = update_camera_shake(delta)
-
-	head.position = head.position.lerp(
-		target_position + shake_offset,
-		delta * camera_effects_lerp
-	)
-
-	var target_rotation: Vector3 = camera_base_rotation + Vector3(
-		0.0,
-		0.0,
-		target_tilt
-	)
-
-	head.rotation.z = lerp_angle(
-		head.rotation.z,
-		target_rotation.z,
-		delta * camera_effects_lerp
-	)
+	camera_controller.stop_shake()
 
 
 func _physics_process(delta: float) -> void:
@@ -316,26 +85,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_speed = walking_speed
 
-	var target_rotation: Vector3 = head.global_rotation
-
-	flashlight.global_rotation.x = lerp_angle(
-		flashlight.global_rotation.x,
-		target_rotation.x,
-		delta * flashlight_lerp_speed
-	)
-
-	flashlight.global_rotation.y = lerp_angle(
-		flashlight.global_rotation.y,
-		target_rotation.y,
-		delta * flashlight_lerp_speed
-	)
-
-	flashlight.global_rotation.z = lerp_angle(
-		flashlight.global_rotation.z,
-		target_rotation.z,
-		delta * flashlight_lerp_speed
-	)
-
 	if !is_on_floor():
 		velocity += get_gravity() * delta
 		jumping = true
@@ -345,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !console.visible:
 		velocity.y = JUMP_VELOCITY
 		jumping = true
-		jump_animation_finished = false
+		player_animation.start_jump()
 
 	input_dir = Input.get_vector(
 		"left",
@@ -390,10 +139,22 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if !floor_before_move and is_on_floor():
-		landing_amount = 0.12
-		landing_animation = true
+		camera_controller.landed()
+		player_animation.landed()
 
-	update_camera_movement(delta)
+	camera_controller.update_camera_movement(
+		delta,
+		input_dir,
+		current_speed,
+		sprinting_speed
+	)
+	player_animation.update_animation(
+		delta,
+		input_dir,
+		current_speed,
+		sprinting_speed,
+		jumping
+	)
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:

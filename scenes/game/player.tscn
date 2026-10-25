@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dcgsyfvqhvyne" path="res://models/player_animated.glb" id="8_m5ugi"]
 [ext_resource type="FontFile" uid="uid://6uomm0smvlmj" path="res://fonts/Arial.ttf" id="10_bnwh7"]
 [ext_resource type="Script" uid="uid://dig3lybd1i4sq" path="res://scripts/popups/console_output.gd" id="11_dsw4c"]
+[ext_resource type="Script" uid="uid://bg2cw0ssjt8qq" path="res://scripts/game/player_camera.gd" id="12_player_camera"]
+[ext_resource type="Script" uid="uid://d3hav1cexvaht" path="res://scripts/game/player_animation.gd" id="13_player_animation"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jeejg"]
 radius = 0.30615234
@@ -235,6 +237,7 @@ script = ExtResource("5_t8yk2")
 
 [node name="head" type="Node3D" parent="." unique_id=509243314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0956864, -0.1646043)
+script = ExtResource("12_player_camera")
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=416926787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005147934, 0.038333148)
@@ -341,6 +344,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
+
+[node name="PlayerAnimation" type="Node" parent="."]
+script = ExtResource("13_player_animation")
 
 [node name="dev" type="CanvasLayer" parent="." unique_id=1637408639]
 layer = 10
