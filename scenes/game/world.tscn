@@ -177,6 +177,7 @@ uv1_scale = Vector3(1.555, 0.755, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_jq8tk"]
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_iby7u")
+size = Vector2(2, 2.97)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa3vm"]
 albedo_texture = ExtResource("7_i7141")
@@ -200,21 +201,20 @@ size = Vector3(2.006775, 0.3808899, 1.3106079)
 size = Vector3(1.8867035, 15.388184, 7.3675537)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h83rl"]
-size = Vector3(1.72686, 15.4296875, 9.150261)
+size = Vector3(1.72686, 15.4296875, 8.957943)
 
 [node name="World" type="Node3D" unique_id=1923274931]
 script = ExtResource("1_e3hyu")
 
 [node name="sun" type="DirectionalLight3D" parent="." unique_id=1099560116]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6785555, 0.22412497)
 
 [node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
-transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0, 0, 0)
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.16498709, 0, -0.27787292)
 script = ExtResource("5_4mrxx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="elevator" unique_id=1102906453]
@@ -308,6 +308,7 @@ libraries/ = SubResource("AnimationLibrary_dss4m")
 libraries/ = SubResource("AnimationLibrary_xo05s")
 
 [node name="entrance" type="Node3D" parent="elevator" unique_id=804331359]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.4928279, 0, 0.9308461)
 
 [node name="grid" type="StaticBody3D" parent="elevator/entrance" unique_id=1452614580]
 transform = Transform3D(2.5000007, 0, 0, 0, 1.0000001, 0, 0, 0, 1.71, -0.48812786, -0.73414123, 5.688077)
@@ -317,7 +318,7 @@ transform = Transform3D(3.279999, 0, 0, 0, 1.0320001, 0, 0, 0, 4.7953215, 0.1952
 shape = SubResource("ConcavePolygonShape3D_iby7u")
 
 [node name="metal" type="StaticBody3D" parent="elevator/entrance" unique_id=212678188]
-transform = Transform3D(2.5000007, 0, 0, 0, 1.0000001, 0, 0, 0, 1.71, -0.48812786, -0.73414123, 5.688077)
+transform = Transform3D(2.5000005, 0, 0, 0, 1, 0, 0, 0, 1.7099999, 0.007934362, -0.7341412, 5.688076)
 metadata/material = "metal"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="elevator/entrance/metal" unique_id=961473570]
@@ -349,39 +350,39 @@ transform = Transform3D(8.2, 0, 0, 0, 1.0320002, 0, 0, 0, 8.2, -8.481223, -23.19
 mesh = SubResource("BoxMesh_ykw3p")
 
 [node name="stairs1" type="MeshInstance3D" parent="elevator/entrance" unique_id=1159550129]
-transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.48812786, -0.73414123, 4.9340067)
+transform = Transform3D(2.500001, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9405001, 0.007934358, -0.7341412, 4.520729)
 mesh = SubResource("PlaneMesh_jq8tk")
 
 [node name="stairs8" type="MeshInstance3D" parent="elevator/entrance" unique_id=204821116]
-transform = Transform3D(2.135, 0, 0, 0, -1, 8.244371e-08, 0, -1.509958e-07, -0.546, -0.488, 6.316, 4.74)
+transform = Transform3D(2.135, 0, 0, 0, -0.99999976, 8.244369e-08, 0, -1.5099577e-07, -0.546, 0.008062154, 6.278747, 3.611611)
 mesh = SubResource("PlaneMesh_iby7u")
 
 [node name="stairs2" type="MeshInstance3D" parent="elevator/entrance" unique_id=1274368633]
-transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.5175016, -0.6205242, 6.510331)
+transform = Transform3D(2.500001, 0, 0, 0, 1, 0, 0, 0, 0.9405001, -0.021439373, -0.6205242, 6.510331)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs4" type="MeshInstance3D" parent="elevator/entrance" unique_id=1370383441]
-transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, 1.7718751, 5.483352, 4.6643043)
+transform = Transform3D(0, -0.99999994, 0, 2.500001, 2.4428138e-08, 0, 0, 0, 0.9405001, 2.2679372, 5.483352, 3.71851)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs5" type="MeshInstance3D" parent="elevator/entrance" unique_id=974378106]
-transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, 1.7718751, 0.49010503, 4.6643043)
+transform = Transform3D(0, -0.99999994, 0, 2.500001, 2.4428138e-08, 0, 0, 0, 0.9405001, 2.2679372, 0.49010497, 3.71851)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs6" type="MeshInstance3D" parent="elevator/entrance" unique_id=509157525]
-transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, -2.8177223, 5.483352, 4.6643043)
+transform = Transform3D(0, -0.99999994, 0, 2.500001, 2.4428138e-08, 0, 0, 0, 0.9405001, -2.32166, 5.483352, 3.71851)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs7" type="MeshInstance3D" parent="elevator/entrance" unique_id=47685434]
-transform = Transform3D(0, -1.0000001, 0, 2.500001, 2.442814e-08, 0, 0, 0, 0.94050014, -2.8177223, 0.49010506, 4.6643043)
+transform = Transform3D(0, -0.99999994, 0, 2.500001, 2.4428138e-08, 0, 0, 0, 0.9405001, -2.32166, 0.49010497, 3.71851)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="stairs3" type="MeshInstance3D" parent="elevator/entrance" unique_id=784470515]
-transform = Transform3D(2.500001, 0, 0, 0, 1.0000001, 0, 0, 0, 0.94050014, -0.5175016, -0.23438948, 7.742521)
+transform = Transform3D(2.500001, 0, 0, 0, 1, 0, 0, 0, 0.9405001, -0.021439373, -0.23438945, 7.7425203)
 mesh = SubResource("BoxMesh_iby7u")
 
 [node name="shaft" type="StaticBody3D" parent="elevator/entrance" unique_id=1108444320]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.18250318, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.4275035, 0, -0.91500854)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=301559788]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 2.9747162, 7.194093, 1.6383525)
@@ -392,7 +393,7 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -3.93
 shape = SubResource("BoxShape3D_6fhyq")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="elevator/entrance/shaft" unique_id=852409973]
-transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.3711395e-08, -0.2902749, 7.214846, -2.9242046)
+transform = Transform3D(-4.37114e-08, 0, -1.0000001, 0, 1.0000001, 0, 1.0000001, 0, -4.37114e-08, -0.48117673, 7.214847, -2.9242048)
 shape = SubResource("BoxShape3D_h83rl")
 
 [node name="wf_elevator_shaft" parent="elevator" unique_id=2094951542 instance=ExtResource("15_740o0")]
