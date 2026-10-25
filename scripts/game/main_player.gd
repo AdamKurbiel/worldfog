@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var areaNotifyAnimation : AnimationPlayer = $PlayerGUI/CanvasLayer/animation
 @onready var areaEnterSfx : AudioStreamPlayer = $PlayerGUI/CanvasLayer/AreaEnter
 @onready var areaNameLabel : Label = $PlayerGUI/CanvasLayer/area_name
+@onready var model : Node3D = $model
 
 func toggleFlashlight():
 	$flashlight.visible = true
@@ -22,6 +23,7 @@ func areaNotify(area_name):
 	areaEnterSfx.play()
 	areaNameLabel.text = area_name
 
+var jumping = false
 
 var flashlight_lerp_speed: float = 20.0
 var current_speed: float = 5.0
@@ -167,10 +169,17 @@ func update_camera_movement(delta: float) -> void:
 		target_bob_speed *= sprint_bob_multiplier
 		target_bob_amount *= 1.5
 
-	if moving:
+	if moving && is_on_floor():
 		bob_time += delta * target_bob_speed
+		model.get_node("AnimationPlayer").speed_scale = 1.5
+		model.get_node("AnimationPlayer").play("ArmLowAction")
 	else:
 		bob_time = lerp(bob_time, 0.0, delta * 5.0)
+		if (is_on_floor()):
+			model.get_node("AnimationPlayer").play("HumanLowAction")
+		else:
+			model.get_node("AnimationPlayer").speed_scale = 0.0
+			
 
 	var bob_x: float = sin(bob_time * 0.5) * target_bob_amount
 	var bob_y: float = abs(cos(bob_time)) * target_bob_amount
@@ -284,6 +293,9 @@ func _physics_process(delta: float) -> void:
 
 	if !is_on_floor():
 		velocity += get_gravity() * delta
+		jumping = true
+	if is_on_floor():
+		jumping = false
 
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !console.visible:
 		velocity.y = JUMP_VELOCITY
