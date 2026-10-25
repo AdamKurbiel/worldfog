@@ -48,6 +48,7 @@ var shake_seed: Vector3 = Vector3.ZERO
 
 var camera_base_position: Vector3 = Vector3(0, 1, 0)
 var camera_base_rotation: Vector3 = Vector3.ZERO
+var camera_pitch: float = 0.0
 
 var bob_time: float = 0.0
 var bob_speed: float = 8.0
@@ -80,13 +81,12 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion and !console.visible:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-
-		head.rotation.x = clamp(
-			head.rotation.x,
+		camera_pitch = clamp(
+			camera_pitch - deg_to_rad(event.relative.y * mouse_sens),
 			deg_to_rad(-89.0),
 			deg_to_rad(89.0)
 		)
+		head.rotation.x = camera_pitch
 
 
 func start_shake(
