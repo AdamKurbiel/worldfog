@@ -8,7 +8,7 @@ var shadowDistance: float = 0.0
 
 var unstability = 0.0
 var render_u = 0.0
-@export var lerp_speed = 5.0
+@export var lerp_speed = 10.0
 
 func _ready() -> void:
 	shadowMaterial = text.material as ShaderMaterial
@@ -42,6 +42,11 @@ func _process(delta: float) -> void:
 	shadowMaterial.set_shader_parameter("shadow_distance", shadowDistance)
 
 	render_u = lerpf(render_u, unstability, weight)
+	if (roundi(render_u) != roundi(unstability)):
+		if (!$Roll.playing):
+			$Roll.play()
+	else:
+		$Roll.stop()
 
 	bar.value = render_u
-	text.text = str(int(100.0 - render_u)) + "% STABILITY"
+	text.text = str(roundi(100.0 - render_u)) + "% STABILITY"

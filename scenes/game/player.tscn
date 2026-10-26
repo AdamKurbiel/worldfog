@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bmiuvq65vkokk" path="res://ui/popups/HUMAN_STABILITY-red.png" id="9_cyajl"]
 [ext_resource type="FontFile" uid="uid://6uomm0smvlmj" path="res://fonts/Arial.ttf" id="10_bnwh7"]
 [ext_resource type="Script" uid="uid://dig3lybd1i4sq" path="res://scripts/popups/console_output.gd" id="11_dsw4c"]
+[ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="11_fh65b"]
 [ext_resource type="Script" uid="uid://bg2cw0ssjt8qq" path="res://scripts/game/player_camera.gd" id="12_player_camera"]
 [ext_resource type="Script" uid="uid://d3hav1cexvaht" path="res://scripts/game/player_animation.gd" id="13_player_animation"]
 
@@ -398,6 +399,9 @@ theme_override_font_sizes/font_size = 20
 text = "100% STABILITY"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Roll" type="AudioStreamPlayer" parent="PlayerGUI/gameUI/stability" unique_id=1764650604]
+stream = ExtResource("11_fh65b")
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
