@@ -113,3 +113,10 @@ func tp(x,y,z):
 	
 	plr.position = Vector3(float(x),float(y),float(z))
 	output.tell("Teleported Player to "+str(x)+","+str(y)+","+str(z))
+
+func rmstability(n):
+	$"../../PlayerGUI/gameUI/stability".rm(n)
+func addstability(n):
+	$"../../PlayerGUI/gameUI/stability".add(n)
+func setstability(n):
+	$"../../PlayerGUI/gameUI/stability".forceset(n)
