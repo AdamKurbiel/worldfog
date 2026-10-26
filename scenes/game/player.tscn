@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://bvakhpqpw4yfh" path="res://audio/sfx/area_enter.wav" id="4_nybob"]
 [ext_resource type="Script" uid="uid://pebvxohegd52" path="res://scripts/game/material_ray.gd" id="5_t8yk2"]
 [ext_resource type="Texture2D" uid="uid://bpv52q2enobbw" path="res://ui/crosshair.png" id="8_3vq1g"]
+[ext_resource type="Texture2D" uid="uid://hed31ayv3w5p" path="res://ui/popups/HUMAN_STABILITY.png" id="8_e605p"]
 [ext_resource type="PackedScene" uid="uid://dcgsyfvqhvyne" path="res://models/player_animated.glb" id="8_m5ugi"]
+[ext_resource type="Texture2D" uid="uid://bmiuvq65vkokk" path="res://ui/popups/HUMAN_STABILITY-red.png" id="9_cyajl"]
 [ext_resource type="FontFile" uid="uid://6uomm0smvlmj" path="res://fonts/Arial.ttf" id="10_bnwh7"]
 [ext_resource type="Script" uid="uid://dig3lybd1i4sq" path="res://scripts/popups/console_output.gd" id="11_dsw4c"]
 [ext_resource type="Script" uid="uid://bg2cw0ssjt8qq" path="res://scripts/game/player_camera.gd" id="12_player_camera"]
@@ -298,6 +300,14 @@ anchors_preset = 0
 offset_right = 1086.0
 offset_bottom = 768.0
 
+[node name="ColorRect2" type="ColorRect" parent="PlayerGUI/gameUI" unique_id=1606278240]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 720.0
+offset_right = 219.0
+offset_bottom = 751.0
+color = Color(0, 0, 0, 0.47058824)
+
 [node name="TextureRect" type="TextureRect" parent="PlayerGUI/gameUI" unique_id=103495724]
 modulate = Color(0.73300546, 0.7330054, 0.7330054, 0.45882353)
 texture_filter = 1
@@ -340,7 +350,44 @@ offset_right = 1098.0
 offset_bottom = 782.0
 color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="PlayerGUI" unique_id=1177428527]
+[node name="Control" type="Control" parent="PlayerGUI" unique_id=496678776]
+anchors_preset = 0
+offset_left = -13.0
+offset_top = 524.0
+offset_right = 178.0
+offset_bottom = 748.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGUI/Control" unique_id=896333321]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 6.0
+offset_right = 158.0
+offset_bottom = 190.0
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="Label" type="Label" parent="PlayerGUI/Control" unique_id=1673183463]
+layout_mode = 0
+offset_top = 162.0
+offset_right = 191.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("3_68xwl")
+theme_override_font_sizes/font_size = 20
+text = "100% STABILITY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PlayerGUI/Control" unique_id=1068964257]
+self_modulate = Color(0.9999992, 0.8821615, 0.8628052, 0.6509804)
+texture_filter = 1
+layout_mode = 0
+offset_left = 61.00006
+offset_top = 10.000061
+offset_right = 382.00006
+offset_bottom = 815.00006
+scale = Vector2(0.2, 0.2)
+fill_mode = 3
+texture_under = ExtResource("8_e605p")
+texture_progress = ExtResource("9_cyajl")
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
