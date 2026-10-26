@@ -1,3 +1,8 @@
+##Created by Adam Kurbiel
+
+##TODO: The stability meter needs to gain MORE
+##player's attention when it's changed.
+
 extends Control
 
 @onready var text = $Label
@@ -50,3 +55,6 @@ func _process(delta: float) -> void:
 
 	bar.value = render_u
 	text.text = str(roundi(100.0 - render_u)) + "% STABILITY"
+
+func _on_timer_timeout() -> void:
+	shake()
