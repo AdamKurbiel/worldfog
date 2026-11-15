@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dvwdh6invo5p1" path="res://scripts/game/dummy.gd" id="1_8s3gb"]
 [ext_resource type="PackedScene" uid="uid://dcgsyfvqhvyne" path="res://models/player_animated.glb" id="1_w2ddu"]
+[ext_resource type="Texture2D" uid="uid://bmiuvq65vkokk" path="res://ui/popups/HUMAN_STABILITY-red.png" id="3_gfv0n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ox0n"]
 height = 1.9002686
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1qev"]
+albedo_texture = ExtResource("3_gfv0n")
+uv1_scale = Vector3(87.7, 45.175, 1)
 
 [node name="dummy" type="CharacterBody3D" unique_id=640413913]
 script = ExtResource("1_8s3gb")
@@ -15,3 +20,8 @@ shape = SubResource("CapsuleShape3D_0ox0n")
 
 [node name="model" parent="." unique_id=1444024010 instance=ExtResource("1_w2ddu")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
+
+[node name="Cube_001" parent="model/ArmLow/Skeleton3D" parent_id_path=PackedInt32Array(1444024010, 693358983) index="0" unique_id=1026680684]
+surface_material_override/0 = SubResource("StandardMaterial3D_j1qev")
+
+[editable path="model"]

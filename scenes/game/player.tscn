@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dig3lybd1i4sq" path="res://scripts/popups/console_output.gd" id="11_dsw4c"]
 [ext_resource type="AudioStream" uid="uid://b8b6yn8kt3ssh" path="res://audio/sfx/roll.mp3" id="11_fh65b"]
 [ext_resource type="Script" uid="uid://bg2cw0ssjt8qq" path="res://scripts/game/player_camera.gd" id="12_player_camera"]
+[ext_resource type="Script" uid="uid://cev3olm63jff4" path="res://scripts/popups/looking_at.gd" id="13_knjtp"]
 [ext_resource type="Script" uid="uid://d3hav1cexvaht" path="res://scripts/game/player_animation.gd" id="13_player_animation"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jeejg"]
@@ -234,7 +235,7 @@ fov = 85.0
 near = 0.004
 
 [node name="eyes" type="RayCast3D" parent="head/Camera3D" unique_id=891844142]
-target_position = Vector3(0, 0, -1.7)
+target_position = Vector3(0, 0, -10)
 script = ExtResource("4_ey0fj")
 
 [node name="flashlight" type="SpotLight3D" parent="." unique_id=2081824799]
@@ -387,6 +388,18 @@ pitch_scale = 0.75
 [node name="Timer" type="Timer" parent="PlayerGUI/gameUI/stability" unique_id=700394967]
 wait_time = 2.5
 autostart = true
+
+[node name="lookingAt" type="RichTextLabel" parent="PlayerGUI/gameUI" unique_id=39597152]
+layout_mode = 0
+offset_top = 59.0
+offset_right = 1087.0
+offset_bottom = 118.0
+theme_override_colors/default_color = Color(1, 1, 1, 0.6313726)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("3_68xwl")
+theme_override_font_sizes/normal_font_size = 20
+horizontal_alignment = 1
+script = ExtResource("13_knjtp")
 
 [node name="model" parent="." unique_id=1478993754 instance=ExtResource("8_m5ugi")]
 transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
