@@ -5,8 +5,8 @@ extends Node3D
 
 const TILE = preload("res://scenes/game/tile.tscn")
 
-const HEIGHT := 3
-const WIDTH := 3
+const HEIGHT := 10
+const WIDTH := 10
 const TILE_SIZE := 5
 
 var content = []

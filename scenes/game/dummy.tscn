@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cjut77eppw5h0"]
+
+[ext_resource type="Script" uid="uid://dvwdh6invo5p1" path="res://scripts/game/dummy.gd" id="1_8s3gb"]
+[ext_resource type="PackedScene" uid="uid://dcgsyfvqhvyne" path="res://models/player_animated.glb" id="1_w2ddu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ox0n"]
+height = 1.9002686
+
+[node name="dummy" type="CharacterBody3D" unique_id=640413913]
+script = ExtResource("1_8s3gb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1438886668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29043657, 0)
+shape = SubResource("CapsuleShape3D_0ox0n")
+
+[node name="model" parent="." unique_id=1444024010 instance=ExtResource("1_w2ddu")]
+transform = Transform3D(-0.905, 0, -1.366512e-07, 0, 0.905, 0, 1.366512e-07, 0, -0.905, 0.015, -0.5514554, 0.11031866)
