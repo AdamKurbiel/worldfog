@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-
+@export var InitialHP = 100
+@export var HP = InitialHP
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 

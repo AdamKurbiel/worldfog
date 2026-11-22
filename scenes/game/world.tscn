@@ -212,7 +212,7 @@ transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-0
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2093890822 instance=ExtResource("1_4wyf3")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1709669, 0.6785555, 0.22412497)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.0399808, 0.6785555, 0.22412497)
 
 [node name="elevator" parent="." unique_id=99578057 instance=ExtResource("5_71j4m")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0.16498709, 0, -0.27787292)
@@ -440,6 +440,6 @@ bus = &"MUSIC"
 parameters/looping = true
 
 [node name="dummy" parent="." unique_id=640413913 instance=ExtResource("15_iby7u")]
-transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 3.7975667, 5.6080265, 5.858096)
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 3.7975667, 0.9987395, 5.858096)
 
 [connection signal="animation_finished" from="elevator/animation" to="elevator" method="_on_animation_animation_finished"]
